@@ -7,3 +7,4 @@ sections:
 - file: docs/testing
 - file: docs/environments
 - file: docs/distribution
+- file: docs/paper
