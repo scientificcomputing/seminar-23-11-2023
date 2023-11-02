@@ -1,0 +1,9 @@
+format: jb-article
+root: README
+
+sections:
+- file: docs/repo
+- file: docs/documentation
+- file: docs/testing
+- file: docs/environments
+- file: docs/distribution

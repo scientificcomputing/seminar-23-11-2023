@@ -1,0 +1,3 @@
+# Material for BioAI seminar
+
+This repository contains material for the BioAI seminar on ...

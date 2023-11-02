@@ -1,0 +1,16 @@
+{
+    "version": "0.2",
+    "ignorePaths": [],
+    "dictionaryDefinitions": [],
+    "dictionaries": [],
+    "words": [
+        "Diataxis",
+        "docstrings",
+        "numpy",
+        "pypi",
+        "pyproject",
+        "Zenodo"
+    ],
+    "ignoreWords": [],
+    "import": []
+}
