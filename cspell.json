@@ -21,6 +21,8 @@
         "pypi",
         "pyproject",
         "pytest",
+        "scientificcomputing",
+        "tbump",
         "viewcode",
         "Zenodo"
     ],

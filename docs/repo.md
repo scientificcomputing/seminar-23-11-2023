@@ -1,4 +1,22 @@
+---
+theme: default
+paginate: true
+header: 'Code and Data repositories'
+footer: 'BioAI seminar 23.11.23 - Henrik Finsberg and Jørgen Dokken'
+size: 16:9
+style: |
+  .small-text {
+    font-size: 0.55rem;
+  }
+html: true
+marp: true
+---
+
 # Code and Data repositories
+BioAI seminar 23.11.23
+Henrik Finsberg and Jørgen Dokken
+
+---
 
 ## Agenda
 
@@ -42,15 +60,65 @@
 
 ---
 
-Demo cookiecutter
+## Demo cookiecutter
 
-
+```
+pip install cookiecutter
+cookiecutter gh:scientificcomputing/generate-paper
+```
 
 ---
 
 ## What is GitHub?
 
-
-
+* A place to host your remote repositories
 * To make it easier to collaborate with others
 * To keep a backup (on GitHub)
+* Create repositories under your group's GitHub organization
+
+---
+
+## Code review process
+
+* Open issue describing the problem. Use the issue tracker to discuss whether this needs to be solved.
+* Clone (or fork) the repository
+* Create a new branch (e.g `git checkout -b finsberg/fix-typo-in-readme`)
+* Push your changes to this new branch
+* Create a pull request, refer to the issue and continue the discussion
+
+---
+
+## Exercise for  the future
+
+Find a typo, mistake or a missing feature in any of the repositories under <https://github.com/orgs/scientificcomputing/repositories>, open an issue and submit a PR.
+
+---
+
+## Creating releases and tags
+
+* When you think that your code is ready it is time to create a release
+* Your code should get a version number
+    - `major.minor.micro` e.g `0.1.2`
+    - Start with 0.0.1 and move to 1.0.0 when it is ready for users
+    - Specify the version number in `pyproject.toml`
+* Create a git tag once you have bumped the version
+* Create a release on GitHub and write a changelog
+    - It is also possible to create a tag during this step
+
+---
+
+## Write a changelog
+
+* List the notable changes since the previous release
+    - For the first release you don't need a changelog
+
+* Information about changes are important for the users
+
+* https://keepachangelog.com/en/1.0.0/
+
+---
+
+## Tools for managing versions and tags
+
+- [`bump-my-version`](https://github.com/callowayproject/bump-my-version)
+- [tbump](https://github.com/your-tools/tbump)
