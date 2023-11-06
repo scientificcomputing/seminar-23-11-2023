@@ -112,10 +112,96 @@ chapters:
 
 ---
 
+## Building the book
+
+Install JupyterBook
+```
+python3 -m pip install jupyter-book
+```
+
+Build the book (in the root where `_config.yml` amd `_toc.yml` is located).
+```
+jupyter-book build .
+```
+
+---
+
 Demo `code/1-documentation-basic`
 
 ---
 
 ## Documenting code using docstrings and type hints
 
-There is a standard way to document
+- There are standard ways to document your code
+
+- We recommend to use either the Google style or Numpy style
+
+- https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html#google-vs-numpy
+
+
+---
+
+## VSCode extension to generate docstrings
+
+https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring
+
+![w:700 center](https://github.com/NilsJPWerner/autoDocstring/raw/HEAD/images/demo.gif)
+
+---
+
+## Using MyST-Markdown to write content
+
+- JupyterBook support a flavor of Markdown called *MyST*.
+- Here you write so called directives
+    ````
+    ```{directivename}
+    Content
+    ```
+    ````
+    e.g
+    ````
+    ```{math}
+    x^2 + y^2 = z^2
+    ```
+    ````
+
+---
+
+## MyST-markdown math
+
+It is also possible to use MyST to labels to equations
+
+````
+```{math}
+:label: my_label
+w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
+```
+````
+and then use
+```
+- A link to an equation directive: {eq}`my_label`
+```
+
+---
+
+## Support `$` in math
+
+To support `$` in math equations you need to add a myst extension to the JupyterBook config
+
+```yaml
+parse:
+  myst_enable_extensions:
+    - amsmath
+    - dollarmath
+    - linkify
+```
+
+* Here we also add `amsmath` to support amsmath LaTeX environments and linkify which will turn urls into links.
+
+---
+
+## More MyST features
+
+- Create citations: https://jupyterbook.org/en/stable/tutorials/references.html#create-a-citation
+- Adding images: https://jupyterbook.org/en/stable/content/figures.html
+- More: https://jupyterbook.org/en/stable/content/index.html
