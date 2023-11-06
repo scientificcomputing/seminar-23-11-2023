@@ -205,3 +205,75 @@ parse:
 - Create citations: https://jupyterbook.org/en/stable/tutorials/references.html#create-a-citation
 - Adding images: https://jupyterbook.org/en/stable/content/figures.html
 - More: https://jupyterbook.org/en/stable/content/index.html
+
+---
+
+## Publishing the book to GitHub pages
+
+- Create a new file `.github/workflows/build_docs.yml`
+
+```yaml
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
+
+on: [push]
+
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+env:
+  # Directory that will be published on github pages
+  PUBLISH_DIR: ./_build/html
+
+jobs:
+
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          python3 -m pip install jupyter-book jupytext
+
+      - name: Build docs
+        run: jupyter book build .
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ${{ env.PUBLISH_DIR }}
+
+  # Single deploy job since we're just deploying
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+```
