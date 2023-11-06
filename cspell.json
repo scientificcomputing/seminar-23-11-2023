@@ -6,6 +6,8 @@
     "words": [
         "amsmath",
         "autodoc",
+        "cookiecutter",
+        "Cookiecutters",
         "Diataxis",
         "docstrings",
         "Dokken",
