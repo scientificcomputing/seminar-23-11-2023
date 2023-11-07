@@ -1,0 +1,7 @@
+format: jb-book
+root: README
+
+chapters:
+  - file: docs/install.md
+  - file: docs/math.md
+  - file: demo.py

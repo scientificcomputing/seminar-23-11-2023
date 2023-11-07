@@ -1,0 +1,30 @@
+# _config.yml
+title: Example paper
+author: Henrik Finsberg and Jørgen Dokken
+copyright: "2023"
+only_build_toc_files: true
+
+parse:
+  myst_enable_extensions:
+    - amsmath
+    - dollarmath
+    - linkify
+
+
+sphinx:
+  config:
+    nb_execution_show_tb: True
+    html_theme_options:
+      navigation_with_keys: false
+    html_last_updated_fmt: "%b %d, %Y"
+    nb_custom_formats:
+        .py:
+            - jupytext.reads
+            - fmt: py
+
+  extra_extensions:
+  - 'sphinx.ext.autodoc'
+  - 'sphinx.ext.napoleon'
+  - 'sphinx.ext.viewcode'
+
+exclude_patterns: [".pytest_cache/*", ".github/*"]
