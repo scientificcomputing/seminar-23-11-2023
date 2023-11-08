@@ -88,9 +88,29 @@ cookiecutter gh:scientificcomputing/generate-paper
 
 ---
 
-## Exercise for  the future
+# Demo
+- Create a new branch and open a pull request
 
-Find a typo, mistake or a missing feature in any of the repositories under <https://github.com/orgs/scientificcomputing/repositories>, open an issue and submit a PR.
+---
+
+# Exercise
+
+- Create a new repo on GitHub (ex: <example-paper>)
+- Run the cookiecutter and add all the files in a single commit
+    ```
+    git add .
+    git commit -m "Add files"
+    ```
+- Push the code to the main branch
+- Create a new brach and make some changes to the README file
+- Push the branch and open a PR
+
+---
+
+
+## Exercise (for the future)
+
+Find a typo, mistake or a missing feature in any of the repositories under <https://github.com/orgs/scientificcomputing/repositories>, open an issue, fork the repo submit a PR.
 
 ---
 
