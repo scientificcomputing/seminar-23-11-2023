@@ -1,4 +1,4 @@
-# Getting started with testing in python
+# Linters, formatters and continuous integration
 
 ## Agenda
 
