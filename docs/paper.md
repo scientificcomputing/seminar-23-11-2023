@@ -1,4 +1,22 @@
+---
+theme: default
+paginate: true
+header: 'Paper with code'
+footer: 'BioAI seminar 23.11.23 - Henrik Finsberg and Jørgen Dokken'
+size: 16:9
+style: |
+  .small-text {
+    font-size: 0.55rem;
+  }
+html: true
+marp: true
+---
+
+
 # Paper with code
+BioAI seminar 23.11.23
+Henrik Finsberg and Jørgen Dokken
+
 
 ---
 

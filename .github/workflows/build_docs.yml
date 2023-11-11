@@ -28,12 +28,32 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
       - name: Install dependencies
         run: |
           python3 -m pip install jupyter-book
 
       - name: Build docs
         run: jupyter book build .
+
+      - name: Use Node v18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Build slides
+        run: |
+          npx @marp-team/marp-cli docs/repo.md --html -o ${{ env.PUBLISH_DIR }}/repo-slides.html
+          npx @marp-team/marp-cli docs/environments.md --html -o ${{ env.PUBLISH_DIR }}/environments-slides.html
+          npx @marp-team/marp-cli docs/documentation.md --html -o ${{ env.PUBLISH_DIR }}/documentation-slides.html
+          npx @marp-team/marp-cli docs/testing.md --html -o ${{ env.PUBLISH_DIR }}/testing-slides.html
+          npx @marp-team/marp-cli docs/distribution.md --html -o ${{ env.PUBLISH_DIR }}/paper-slides.html
+          npx @marp-team/marp-cli docs/distribution.md --html -o ${{ env.PUBLISH_DIR }}/distribution-slides.html
+
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2

@@ -98,12 +98,28 @@ cookiecutter gh:scientificcomputing/generate-paper
 - Create a new repo on GitHub (ex: <example-paper>)
 - Run the cookiecutter and add all the files in a single commit
     ```
-    git add .
-    git commit -m "Add files"
+    git init  # Initialize
+    git remote add origin <url>  # Add a new remote
+    git add .  # Add all files
+    git commit -m "Add files"  # Commit
     ```
+
+---
+
 - Push the code to the main branch
+    ```
+    git push -u origin main
+    ```
+
 - Create a new brach and make some changes to the README file
+    ```
+    git checkout -b edit-readme
+    ```
+
 - Push the branch and open a PR
+    ```
+    git push origin edit-readme
+    ```
 
 ---
 
