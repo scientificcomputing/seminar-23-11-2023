@@ -7,7 +7,7 @@ The agenda is as follows
 
 - Code and Data repositories [Slides](https://scientificcomputing.github.io/bioai-seminar-23-11-2023/repo-slides.html) [Book](https://scientificcomputing.github.io/bioai-seminar-23-11-2023/docs/repo.html)
 - Reproducible environments [Slides](https://scientificcomputing.github.io/bioai-seminar-23-11-2023/environments-slides.html) [Book](https://scientificcomputing.github.io/bioai-seminar-23-11-2023/docs/environments.html)
-- Linters, formatters and continuous integration [Slides](https://scientificcomputing.github.io/bioai-seminar-23-11-2023/testing-slides.html) [Book](https://scientificcomputing.github.io/bioai-seminar-23-11-2023/docs/testing.html)
 - Documentation [Slides](https://scientificcomputing.github.io/bioai-seminar-23-11-2023/documentation-slides.html) [Book](https://scientificcomputing.github.io/bioai-seminar-23-11-2023/docs/documentation.html)
+- Linters, formatters and continuous integration [Slides](https://scientificcomputing.github.io/bioai-seminar-23-11-2023/testing-slides.html) [Book](https://scientificcomputing.github.io/bioai-seminar-23-11-2023/docs/testing.html)
 - Example paper with code [Slides](https://scientificcomputing.github.io/bioai-seminar-23-11-2023/paper-slides.html) [Book](https://scientificcomputing.github.io/bioai-seminar-23-11-2023/docs/paper.html)
 - Packaging and Distribution (if time) [Slides](https://scientificcomputing.github.io/bioai-seminar-23-11-2023/distribution-slides.html) [Book](https://scientificcomputing.github.io/bioai-seminar-23-11-2023/docs/distribution.html)
