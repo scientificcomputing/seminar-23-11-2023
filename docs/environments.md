@@ -72,7 +72,7 @@ Henrik Finsberg and Jørgen Dokken
 
 ---
 
-## Demo - creating a virtual environment
+Demo - creating a virtual environment
 
 
 ---

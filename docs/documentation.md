@@ -63,7 +63,7 @@ Henrik Finsberg and Jørgen Dokken
 
 ## Need to create a config file called `_config.yml`
 
-```yml
+```yaml
 # _config.yml
 title: Example paper
 author: Henrik Finsberg and Jørgen Dokken
@@ -100,7 +100,7 @@ exclude_patterns: [".pytest_cache/*", ".github/*"]
 
 ## And a table of contents called `_toc.yml`
 
-```yml
+```yaml
 format: jb-book
 root: README
 
