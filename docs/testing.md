@@ -1,4 +1,23 @@
+---
+theme: default
+paginate: true
+header: 'Linters, formatters and continuous integration'
+footer: 'BioAI seminar 23.11.23 - Henrik Finsberg and Jørgen Dokken'
+size: 16:9
+style: |
+  .small-text {
+    font-size: 0.55rem;
+  }
+html: true
+marp: true
+---
+
 # Linters, formatters and continuous integration
+BioAI seminar 23.11.23
+Henrik Finsberg and Jørgen Dokken
+
+---
+
 
 ## Agenda
 
