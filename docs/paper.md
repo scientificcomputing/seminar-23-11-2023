@@ -23,8 +23,23 @@ Henrik Finsberg and Jørgen Dokken
 ## Agenda
 
 - How to set up a repo to reproduce results in a paper
+    - Starting a new repository
     - Set up reproducible environment
     - Create tests to make sure results remain valid
     - Host results online via GitHub pages
     - Make sure to specify how to cite
     - Licensing
+
+---
+
+## Starting a new project
+
+- Use cookiecutter
+- Use template
+- Copy files from existing project
+
+---
+
+## Demo
+
+https://github.com/scientificcomputing/example-paper

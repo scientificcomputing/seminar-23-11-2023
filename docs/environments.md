@@ -101,6 +101,130 @@ deactivate
 
 ---
 
+## Creating a `pyproject.toml`
+
+- `pyproject.toml` is the recommended way to specify project metadata
+- Minimum metadata
+    - name
+    - authors
+    - license
+    - version
+    - dependencies
+
+---
+
+## Example `pyproject.toml`
+
+FIXME: No we need build-system?
+
+```toml
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "my-paper"
+classifiers = ["Private :: Do Not Upload"]
+version = "0"
+dependencies = [
+    "matplotlib",
+    "numpy",
+    "scipy",
+]
+```
+
+---
+
+## Exercise
+
+- Add `numpy`, `scipy` and `matplotlib` as dependencies in your `pyproject.toml`
+- Try to install these dependencies in your virtual environment by typing
+    ```
+    python3 -m pip install .
+    ```
+
+---
+
+## Pinning the exact versions of the libraries you use
+
+* To ensure reproducible results, it is important that you specify the exact versions of the libraries you used
+* We can use a tool called `pip-compile` (install with `pip install pip-tools`) to pin all the versions based on your `pyproject.toml`
+* Use
+    ```
+    pip-compile --output-file=requirements.txt pyproject.toml
+    ```
+    to create a file `requirements.txt` containing all packages you use
+* You can now install the exact dependencies using the command
+    ```
+    python3 -m pip install -r requirements.txt
+    ```
+
+---
+
+## Exercise
+
+- You want to use numpy version `1.21.5` for your project. Specify this in your `pyproject.toml` and compile the exact requirements
+
+
+---
+
+## Extra dependencies for development
+
+* You might want to use some other libraries when developing the software (such as `pip-tools`)
+* These libraries should not be required when installing the software, but it is nice for other developer to have an easy way to install these.
+* You can list these in `pyproject.toml` under `project.optional-dependencies`
+
+
+---
+
+## Specifying optional dependencies in `pyproject.toml`
+
+```yaml
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-cov",
+]
+dev = [
+    "pdbpp",
+    "ipython",
+    "bump-my-version",
+    "pre-commit",
+    "pip-tools",
+]
+```
+
+---
+
+## Installing optional dependencies
+
+* Use
+    ```
+    python3 -m pip install ".[dev]"
+    ```
+    to install optional dependencies.
+* To install several optional dependencies you can separate the names with comma
+    ```
+    python3 -m pip install ".[dev,test]"
+    ```
+
+---
+
+## Pinning optional dependencies
+
+It might be beneficial to pin your optional dependencies. This can be done using e.g
+
+```
+pip-compile --extra=dev --output-file=requirements-dev.txt pyproject.toml
+```
+
+* Here we save these dependencies to a different file called `requirements-dev.txt`, which can be installed using
+    ```
+    python3 -m pip install -r requirements-dev.txt
+    ```
+
+---
+
 ## Conda
 
 TBW

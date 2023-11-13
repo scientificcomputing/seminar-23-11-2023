@@ -50,7 +50,6 @@ Henrik Finsberg and Jørgen Dokken
 * Make it easier for other to contribute (file issues / fix bugs)
 * Which will make your software better
 
-
 ---
 
 ## Using JupyterBook to create documentation
@@ -58,6 +57,31 @@ Henrik Finsberg and Jørgen Dokken
 - [JupyterBook](https://jupyterbook.org/en/stable/intro.html) is a powerful framework for writing documentation
 - You can use Markdown (Myst), Notebooks and pure python files in your documentation.
 - It integrates well with latex (math) and Sphinx (for parsing docstrings)
+
+---
+
+## Add extra dependencies for docs
+
+To use `jupyter-book` in your project you should add some extra dependencies
+
+```yaml
+[project.optional-dependencies]
+docs = [
+    "jupyter-book",
+    "jupytext",
+    "sphinxcontrib-bibtex",
+]
+```
+
+---
+
+## Compile the exact versions your use with pip-compile
+
+Use
+```
+pip-compile --extra=docs --output-file=requirements-docs.txt pyproject.toml
+```
+
 
 ---
 
