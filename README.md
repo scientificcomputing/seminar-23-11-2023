@@ -11,3 +11,10 @@ The agenda is as follows
 - Linters, formatters and continuous integration [Slides](https://scientificcomputing.github.io/bioai-seminar-23-11-2023/testing-slides.html) [Book](https://scientificcomputing.github.io/bioai-seminar-23-11-2023/docs/testing.html)
 - Example paper with code [Slides](https://scientificcomputing.github.io/bioai-seminar-23-11-2023/paper-slides.html) [Book](https://scientificcomputing.github.io/bioai-seminar-23-11-2023/docs/paper.html)
 - Packaging and Distribution (if time) [Slides](https://scientificcomputing.github.io/bioai-seminar-23-11-2023/distribution-slides.html) [Book](https://scientificcomputing.github.io/bioai-seminar-23-11-2023/docs/distribution.html)
+
+
+## Other useful resources
+
+- https://scientificcomputing.github.io
+- [The Turing Way](https://the-turing-way.netlify.app/reproducible-research/reproducible-research)
+- [Scientific Python Library Development Guide](https://learn.scientific-python.org/development/)
