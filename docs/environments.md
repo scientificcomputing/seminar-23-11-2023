@@ -118,14 +118,14 @@ deactivate
 FIXME: No we need build-system?
 
 ```toml
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+[build-system]  # Setuptools + editable install
+requires = ["setuptools>=61.2"]
+build-backend = "setuptools.build_meta"
+
 
 [project]
 name = "my-paper"
-classifiers = ["Private :: Do Not Upload"]
-version = "0"
+version = "0.1.0"
 dependencies = [
     "matplotlib",
     "numpy",
@@ -140,7 +140,7 @@ dependencies = [
 - Add `numpy`, `scipy` and `matplotlib` as dependencies in your `pyproject.toml`
 - Try to install these dependencies in your virtual environment by typing
     ```
-    python3 -m pip install .
+    python3 -m pip install -e .
     ```
 
 ---
@@ -192,6 +192,9 @@ dev = [
     "pre-commit",
     "pip-tools",
 ]
+all = [
+   "my-paper[test,dev]"
+]
 ```
 
 ---
@@ -224,6 +227,7 @@ pip-compile --extra=dev --output-file=requirements-dev.txt pyproject.toml
     ```
 
 ---
+
 
 ## Conda
 
@@ -347,15 +351,26 @@ https://github.com/orgs/scientificcomputing/packages
 
 ## What do choose?
 
-* Only python dependencies?
-    - Use python virtual environments
-* Do you rely on packages with strong dependency on C++/Rust/C/Fortran (e.g Tensorflow)
-    - Use conda
-* Do you
+* Use python virtual environments if you
+    - have only python dependencies
+
+* Use conda if
+    - you rely on packages with strong dependency on C++/Rust/C/Fortran (e.g Tensorflow)
+    - all packages exist on conda (conda-forge / bioconda)
+
+* Use docker if you
+    - need full control over the environment,
+    - require additional packages that are hard to install
+    - need the development version of a dependency (that is not pure python e.g FEniCS)
 
 ---
 
 ## Publishing a docker image with Github actions
 
+The simplest way to ensure that users than exactly reproduce your environment is to use the same docker image as you
 
-TBW
+Therefore you should always publish a docker image containing the exact dependencies for reproducing the results
+
+The templates contains a workflow for building docker images using GitHub actions for every new tag
+
+---

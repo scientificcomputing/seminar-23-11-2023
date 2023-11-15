@@ -3,8 +3,8 @@ root: README
 
 sections:
 - file: docs/repo
-- file: docs/documentation
-- file: docs/testing
 - file: docs/environments
-- file: docs/distribution
+- file: docs/testing
+- file: docs/documentation
 - file: docs/paper
+- file: docs/distribution

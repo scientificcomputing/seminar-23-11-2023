@@ -134,18 +134,53 @@ Find a typo, mistake or a missing feature in any of the repositories under <http
 
 ---
 
-## Creating releases and tags
+## Versioning
 
 * When you think that your code is ready it is time to create a release
 * Your code should get a version number
-    - `major.minor.micro` e.g `0.1.2`
-    - Start with 0.0.1 and move to 1.0.0 when it is ready for users
-    - Specify the version number in `pyproject.toml`
+* `MAJOR.MINOR.MICRO`
+* Specify the version number in `pyproject.toml`
+* Semantic or Calendar based versioning
+
+---
+
+## Calendar based versioning
+
+https://calver.org
+
+- YEAR.MONTH.DAY
+- YEAR.MONTH.NUMBER
+- YEAR.NUMBER
+- ...
+- e.g 2023.11.4
+
+
+---
+
+## Semantic versioning
+
+https://semver.org
+
+- `major.minor.micro` e.g `0.1.2`
+- Bump patch: Bug fixes not affecting the API
+- Bump minor: Backward compatible API additions/changes
+- Bump major: Backward incompatible API changes
+- Typically start with `0` major version and bump to `1` when ready for users.
+---
+
+## Publish a new release
+
+* Bump version in `pyproject.toml`
 * Create a git tag once you have bumped the version
+    ```
+    git tag v0.1.2
+    git push --tags
+    ```
 * Create a release on GitHub and write a changelog
     - It is also possible to create a tag during this step
 
 ---
+
 
 ## Write a changelog
 
@@ -161,8 +196,15 @@ Find a typo, mistake or a missing feature in any of the repositories under <http
 ## Tools for managing versions and tags
 
 - [`bump-my-version`](https://github.com/callowayproject/bump-my-version)
-- [tbump](https://github.com/your-tools/tbump)
+- [`tbump`](https://github.com/your-tools/tbump)
 
+
+---
+
+## Exercise: bump the version
+
+- Change the version of your paper
+- Create a new tag and release
 
 ---
 
