@@ -1,8 +1,8 @@
 ---
 theme: default
 paginate: true
-header: 'Paper with code'
-footer: 'BioAI seminar 23.11.23 - Henrik Finsberg and Jørgen Dokken'
+header: 'Best Practices in Modern Software Development: Paper with code'
+footer: '23.11.23 - Henrik Finsberg and Jørgen Dokken'
 size: 16:9
 style: |
   .small-text {
@@ -14,7 +14,8 @@ marp: true
 
 
 # Paper with code
-BioAI seminar 23.11.23
+Best Practices in Modern Software Development: 23.11.23
+
 Henrik Finsberg and Jørgen Dokken
 
 
@@ -42,4 +43,15 @@ Henrik Finsberg and Jørgen Dokken
 
 ## Demo
 
+Example paper with pure python dependencies:
+
 https://github.com/scientificcomputing/example-paper
+
+
+---
+
+## Demo
+
+Example paper with dependencies in docker image
+
+https://github.com/scientificcomputing/example-paper-fenics

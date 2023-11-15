@@ -1,8 +1,8 @@
 ---
 theme: default
 paginate: true
-header: 'Code and Data repositories'
-footer: 'BioAI seminar 23.11.23 - Henrik Finsberg and Jørgen Dokken'
+header: 'Best Practices in Modern Software Development: Code and Data repositories'
+footer: '23.11.23 - Henrik Finsberg and Jørgen Dokken'
 size: 16:9
 style: |
   .small-text {
@@ -13,7 +13,8 @@ marp: true
 ---
 
 # Code and Data repositories
-BioAI seminar 23.11.23
+Best Practices in Modern Software Development: 23.11.23
+
 Henrik Finsberg and Jørgen Dokken
 
 ---
