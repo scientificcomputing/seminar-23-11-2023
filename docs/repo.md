@@ -19,36 +19,14 @@ Henrik Finsberg and Jørgen Dokken
 
 ---
 
-## Agenda
-
-- Why version control systems
-    - Why do we need version control systems.
-    - Why it is good to track the history of a project and understand why certain decisions where made
-- Setting up your first repository
-    - Cookiecutters and template repositories
-- What is GitHub?
-    - Collaboration with other through code review
-    - Pull requests process
-    - Issue tracking
-
----
-
-- Releases and tags
-    - Create a release with a tags for specific version that you want to easily be able to go back to, e.g when you submit a paper or when a paper is published.
-    - Creating a changelog to show what has been changed between releases.
-- Licenses
-- Data repositories and data sharing
-    - How to share data. This should typically not be in a git repo, but rather on a data repository such as Zenodo.
-    - How to deal with the case when it is not possible to share data (Generate synthetic data).
-
-
----
-
 ## Why version control systems?
 
 * To keep a history of what has been changed and why
 * To make it easy to go back to a previous version
 * To make changes while maintaining a working version
+
+![bg fit right](https://the-turing-way.netlify.app/_images/project-history.svg)
+<p class="small-text">Image is used under a CC-BY 4.0 license. DOI: 10.5281/zenodo.3332807.</p>
 
 ---
 
@@ -61,6 +39,8 @@ Henrik Finsberg and Jørgen Dokken
     - https://www.cookiecutter.io/templates
 - Templates
     - Copy all files from an existing repository
+    - https://github.com/scientificcomputing/example-paper
+    - https://github.com/scientificcomputing/example-paper-fenics
 
 
 ---
@@ -74,12 +54,43 @@ cookiecutter gh:scientificcomputing/generate-paper
 
 ---
 
+```
+research_paper_1
+├── CITATION.cff        # Info about how to cite your project
+├── LICENSE             # The license
+├── README.md           # What the user should read first
+├── _config.yml         # Configurations for docs
+├── _toc.yml            # Table of contents for docs
+├── code                # Where to put your code
+│   └── README.md       # Description of the code
+├── cspell.config.yaml  # Dictionary for spell checker
+├── data                # Where to put your data
+│   └── README.md       # Description of the data
+├── docker
+│   └── Dockerfile      # The docker file
+├── docs                # Where to put your docs
+│   ├── logo.png        # Simula Logo to put in documentation
+│   └── references.bib  # Where to put your references
+├── environment.yml     # Conda dependencies
+└── pyproject.toml      # Python metadata and dependencies
+```
+
+---
+
 ## What is GitHub?
 
 * A place to host your remote repositories
 * To make it easier to collaborate with others
 * To keep a backup (on GitHub)
-* Create repositories under your group's GitHub organization
+* Create repositories under your group's GitHub organization (this will make it easier if you are unavailable)
+    - https://github.com/scientificcomputing
+    - https://github.com/ComputationalPhysiology
+
+---
+
+![bg w:50%](https://the-turing-way.netlify.app/_images/healthy-research-tree.jpg)
+<style scoped>section { justify-content: end; }</style>
+<p class="small-text">Image is used under a CC-BY 4.0 licence. DOI: 10.5281/zenodo.3332807.</p>
 
 ---
 
@@ -94,13 +105,14 @@ cookiecutter gh:scientificcomputing/generate-paper
 ---
 
 # Demo
+
 - Create a new branch and open a pull request
 
 ---
 
 # Exercise
 
-- Create a new repo on GitHub (ex: <example-paper>)
+- Create a new repo on GitHub (ex: `example-paper`)
 - Run the cookiecutter and add all the files in a single commit
     ```
     git init  # Initialize
@@ -137,7 +149,7 @@ Find a typo, mistake or a missing feature in any of the repositories under <http
 
 ## Versioning
 
-* When you think that your code is ready it is time to create a release
+* When you think that your code is ready for external users, it is time to create your first release
 * Your code should get a version number
 * `MAJOR.MINOR.MICRO`
 * Specify the version number in `pyproject.toml`
@@ -259,3 +271,21 @@ SOFTWARE.
 Yes, but you need to copy the license in to your repo.
 
 Example: https://github.com/ComputationalPhysiology/mps
+
+---
+
+## Data repositories and data sharing
+
+- Large datasets (more than 50MB) should not be stored in your git repository
+    - Git does not work well with binary files
+- Instead you should store large files in a data repository
+    - Use Google Drive / Dropbox / Other while developing
+    - Publish Data on Zenodo when ready
+
+---
+
+## Other tools for data repositories
+
+- [DVC (open-source Version Control System for Machine Learning Projects](https://dvc.org)
+- [git Large File Storage](https://git-lfs.com)
+- [DataLad](https://www.datalad.org)

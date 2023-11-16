@@ -22,7 +22,7 @@ Henrik Finsberg and Jørgen Dokken
 - A module is a file consisting of Python code
 - A package is a hierarchical file directory structure that consists of modules and sub-packages
 
-![bg fit right 40%](https://uio-in3110.github.io/_images/python_structure_options.svg)
+![bg fit right](https://uio-in3110.github.io/_images/python_structure_options.svg)
 
 ---
 

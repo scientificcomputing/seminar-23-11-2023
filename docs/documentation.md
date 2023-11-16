@@ -20,17 +20,6 @@ Henrik Finsberg and Jørgen Dokken
 
 ---
 
-## Agenda
-
-- Why documentation?
-- Writing docstrings and generating API documentation
-    - numpy vs Google style
-- Writing documentation using Jupyter-Book
-- Hosting documentation on GitHub pages
-
-
----
-
 ## What is documentation?
 
 * Background and motivation
@@ -52,6 +41,31 @@ Henrik Finsberg and Jørgen Dokken
 * Which will make your software better
 
 ---
+
+## The README file
+
+- The first documentation a user reads is the README file
+- Should include
+  - Title of the project
+  - Description of the project
+  - Installation instructions
+  - How to get started
+
+---
+
+- Could include
+  - Badges
+  - Information about how to contribute
+  - License information
+  - Credits
+  - Example
+  - How to cite
+  - Screenshots / figures
+- https://readme.so
+
+
+---
+
 
 ## Using JupyterBook to create documentation
 
