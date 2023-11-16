@@ -20,17 +20,6 @@ Henrik Finsberg and Jørgen Dokken
 ---
 
 
-## Agenda
-
-- Linters
-- Formatters
-- pre-commit hooks
-- Running pre-commit hooks in using GitHub actions
-
-
-
----
-
 ## What is a linter?
 
 - A linter is a tool that analyses your source code and reports potential problems.
@@ -229,3 +218,10 @@ jobs:
     - uses: actions/setup-python@v4
     - uses: pre-commit/action@v3.0.0
 ```
+
+---
+
+## Continuous Integration
+
+
+TBW

@@ -15,18 +15,57 @@ marp: true
 # Reproducible environments
 Best Practices in Modern Software Development: 23.11.23
 
-Henrik Finsberg and Jørgen Dokken
+Henrik Finsberg, Jørgen Dokken and Benjamin Ragan-Kelly
 
 ---
 
-## Agenda
+- A module is a file consisting of Python code
+- A package is a hierarchical file directory structure that consists of modules and sub-packages
 
-- What is a development environment
-- Virtual environments in python
-    - pinning dependencies with `pip-tools`
-    - pyproject.toml
-- Conda
-- Docker
+![bg fit right](https://uio-in3110.github.io/_images/python_structure_options.svg)
+
+---
+
+## Using modules
+
+```python
+import itertools
+# Access function from the module
+itertools.product
+
+# Alias
+import itertools as itools
+itools.product
+
+# The following is considered a bad practice
+from itertools import *
+# Easy to shadow existing variables (also hard for IDEs)
+```
+
+
+---
+
+## Using packages
+
+```python
+from scipy.optimize import minimize
+#      ^      ^               ^
+#      |      |               |
+#   Package   |               |
+#           Module            |
+#                          Function
+```
+
+---
+
+## How does python know which modules and packages that are available?
+
+```python
+import sys
+
+# Notice the order
+sys.path
+```
 
 ---
 
@@ -115,8 +154,6 @@ deactivate
 ---
 
 ## Example `pyproject.toml`
-
-FIXME: No we need build-system?
 
 ```toml
 [build-system]  # Setuptools + editable install
@@ -229,14 +266,13 @@ pip-compile --extra=dev --output-file=requirements-dev.txt pyproject.toml
 
 ---
 
+Demo
+
+---
 
 ## Conda
 
 TBW
-
----
-
-Demo
 
 ---
 
@@ -373,5 +409,3 @@ The simplest way to ensure that users than exactly reproduce your environment is
 Therefore you should always publish a docker image containing the exact dependencies for reproducing the results
 
 The templates contains a workflow for building docker images using GitHub actions for every new tag
-
----

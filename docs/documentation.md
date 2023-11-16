@@ -20,23 +20,11 @@ Henrik Finsberg and Jørgen Dokken
 
 ---
 
-## Agenda
-
-- Why documentation?
-- Writing docstrings and generating API documentation
-    - numpy vs Google style
-- Writing documentation using Jupyter-Book
-- Hosting documentation on GitHub pages
-
-
----
-
 ## What is documentation?
 
 * Background and motivation
     - What do you try to solve?
-* Instructions on how to install the software
-    - Installation instructions
+* Instructions on how to install the software and necessary dependencies
 * Instructions on how to use the software
     - Tutorials / demos
     - API documentation
@@ -52,6 +40,31 @@ Henrik Finsberg and Jørgen Dokken
 * Which will make your software better
 
 ---
+
+## The README file
+
+- The first documentation a user reads is the README file
+- Should include
+  - Title of the project
+  - Description of the project
+  - Installation instructions
+  - How to get started
+
+---
+
+- Could include
+  - Badges
+  - Information about how to contribute
+  - License information
+  - Credits
+  - Example
+  - How to cite
+  - Screenshots / figures
+- https://readme.so
+
+
+---
+
 
 ## Using JupyterBook to create documentation
 
@@ -235,14 +248,78 @@ parse:
 
 ## Publishing the book to GitHub pages
 
-- Create a new file `.github/workflows/build_docs.yml`
+- Create a new file `.github/workflows/build_docs.yml` which contains a workflow for building the docs
+- Also remember to go to your [repository settings on GitHub](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow) to allow for GitHub pages, see
+
+---
 
 ```yaml
 # Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: Build docs
 
-on: [push]
+on:
+  workflow_dispatch:
+  workflow_call:
+  pull_request:
+    branches:
+      - main
 
+jobs:
+  build_docs:
+    runs-on: ubuntu-22.04
+    env:
+      PYTHON_VERSION: "3.10"
+      PUBLISH_DIR: ./_build/html
+
+    steps:
+      # checkout the repository
+      - uses: actions/checkout@v4
+
+      # setup Python
+      - name: Install Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      # preserve pip cache to speed up installation
+      - name: Cache pip
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-pip-${{ hashFiles('*requirements-docs.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - name: Install Python dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install -r requirements-docs.txt
+
+      - name: Build docs
+        run: python3 -m jupyter book build .
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: documentation
+          path: ${{ env.PUBLISH_DIR }}
+          if-no-files-found: error
+```
+
+---
+
+## Publishing the book to GitHub pages
+
+- Create a new file `.github/workflows/publish_docs.yml` which contains a workflow for publishing the docs to github pages
+
+---
+
+```yaml
+name: Github Pages
+
+on:
+  push:
+    branches: [main]  # Only run on push to main
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -255,48 +332,36 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
-env:
-  # Directory that will be published on github pages
-  PUBLISH_DIR: ./_build/html
-
 jobs:
+  build-docs:
+    uses: ./.github/workflows/build_docs.yml
 
-  build:
-    runs-on: ubuntu-22.04
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install dependencies
-        run: |
-          python3 -m pip install jupyter-book jupytext
-
-      - name: Build docs
-        run: jupyter book build .
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: ${{ env.PUBLISH_DIR }}
-
-  # Single deploy job since we're just deploying
   deploy:
-    if: github.ref == 'refs/heads/main'
-    needs: build
+    needs: [build-docs]
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
     runs-on: ubuntu-latest
-
     steps:
+      - name: Download docs artifact
+        # docs artifact is uploaded by build-docs job
+        uses: actions/download-artifact@v3
+        with:
+          name: documentation
+          path: "./public"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: "./public"
+
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
-
 
       - name: Deploy to GitHub Pages
         id: deployment
