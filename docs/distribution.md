@@ -29,3 +29,34 @@ Henrik Finsberg and Jørgen Dokken
     - Creating a GitHub action to publish a new docker image to the GitHub registry whenever you make a new release
 - Licensing
     - Which license to put on your code and why you should use a permissive license
+
+---
+
+## Creating a package
+
+- A set of modules can be collected in a package
+
+- A package is organized as module files in a directory tree
+
+- Each subdirectory must have a __init__.py file (can be empty)
+
+```
+examples/my-package
+├── LICENSE
+├── pyproject.toml
+├── README.md
+├── src
+│   └── pkg
+│       ├── analysis.py
+│       ├── __init__.py
+│       └── printing
+│           ├── __init__.py
+│           └── printing.py
+└── test
+    ├── test_analysis.py
+    └── test_printing.py
+```
+
+---
+
+## Installing a package

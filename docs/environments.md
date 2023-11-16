@@ -19,14 +19,53 @@ Henrik Finsberg and Jørgen Dokken
 
 ---
 
-## Agenda
+- A module is a file consisting of Python code
+- A package is a hierarchical file directory structure that consists of modules and sub-packages
 
-- What is a development environment
-- Virtual environments in python
-    - pinning dependencies with `pip-tools`
-    - pyproject.toml
-- Conda
-- Docker
+![bg fit right 40%](https://uio-in3110.github.io/_images/python_structure_options.svg)
+
+---
+
+## Using modules
+
+```python
+import itertools
+# Access function from the module
+itertools.product
+
+# Alias
+import itertools as itools
+itools.product
+
+# The following is considered a bad practice
+from itertools import *
+# Easy to shadow existing variables (also hard for IDEs)
+```
+
+
+---
+
+## Using packages
+
+```python
+from scipy.optimize import minimize
+#      ^      ^               ^
+#      |      |               |
+#   Package   |               |
+#           Module            |
+#                          Function
+```
+
+---
+
+## How does python know which modules and packages that are available?
+
+```python
+import sys
+
+# Notice the order
+sys.path
+```
 
 ---
 
