@@ -15,7 +15,7 @@ marp: true
 # Reproducible environments
 Best Practices in Modern Software Development: 23.11.23
 
-Henrik Finsberg and Jørgen Dokken
+Henrik Finsberg, Jørgen Dokken and Benjamin Ragan-Kelly
 
 ---
 
@@ -155,8 +155,6 @@ deactivate
 
 ## Example `pyproject.toml`
 
-FIXME: No we need build-system?
-
 ```toml
 [build-system]  # Setuptools + editable install
 requires = ["setuptools>=61.2"]
@@ -268,14 +266,13 @@ pip-compile --extra=dev --output-file=requirements-dev.txt pyproject.toml
 
 ---
 
+Demo
+
+---
 
 ## Conda
 
 TBW
-
----
-
-Demo
 
 ---
 

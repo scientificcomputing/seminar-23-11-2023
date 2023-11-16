@@ -223,7 +223,7 @@ https://semver.org
 
 ## Licenses
 
-- What can other users to with the material in your repository?
+- What can other users do with the material in your repository?
 - No license means the nobody can use, copy, distribute, or modify the work without consent from the author
 * Add a file called LICENSE to your repository. Go to GitHub, click "Add file" and type the name `LICENSE` and GitHub will provide you with some options
 
@@ -234,7 +234,7 @@ https://semver.org
 - MIT: Permissive - Others can use your code in any way, and you will not be sued if the software doesn't work (recommended in most cases)
 - GPL: Copyleft - derivative work must use the same license - good way to embrace open source but often problematic for commercial companies
 - LGPL: Similar to GPL but software can be used under different license
-- CC-BY-4.0 - Typically used for creative work (more journals use this)
+- CC-BY-4.0 - Typically used for creative work (most journals use this)
 
 https://choosealicense.com
 
@@ -280,7 +280,7 @@ Example: https://github.com/ComputationalPhysiology/mps
     - Git does not work well with binary files
 - Instead you should store large files in a data repository
     - Use Google Drive / Dropbox / Other while developing
-    - Publish Data on Zenodo when ready
+    - Publish Data on Zenodo when ready (Zenodo and GitHub integrates well)
 
 ---
 

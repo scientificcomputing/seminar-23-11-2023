@@ -37,6 +37,7 @@
         "pyproject",
         "pytest",
         "pyupgrade",
+        "Ragan",
         "repr",
         "scientificcomputing",
         "scipy",
