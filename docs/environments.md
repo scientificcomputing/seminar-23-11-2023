@@ -409,5 +409,3 @@ The simplest way to ensure that users than exactly reproduce your environment is
 Therefore you should always publish a docker image containing the exact dependencies for reproducing the results
 
 The templates contains a workflow for building docker images using GitHub actions for every new tag
-
----
