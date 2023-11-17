@@ -16,7 +16,7 @@ marp: true
 # Paper with code
 Best Practices in Modern Software Development: 23.11.23
 
-Henrik Finsberg and Jørgen Dokken
+Henrik Finsberg
 
 
 ---

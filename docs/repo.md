@@ -15,7 +15,7 @@ marp: true
 # Code and Data repositories
 Best Practices in Modern Software Development: 23.11.23
 
-Henrik Finsberg and Jørgen Dokken
+Henrik Finsberg
 
 ---
 
@@ -47,10 +47,12 @@ Henrik Finsberg and Jørgen Dokken
 
 ## Demo cookiecutter
 
+
 ```
-pip install cookiecutter
-cookiecutter gh:scientificcomputing/generate-paper
+python3 -m pip install cookiecutter
+python3 -m cookiecutter gh:scientificcomputing/generate-paper
 ```
+(Here you can also use [pipx](https://pypa.github.io/pipx/))
 
 ---
 
@@ -104,6 +106,12 @@ research_paper_1
 
 ---
 
+## Do you need to use branches?
+
+If you work alone and don't work on multiple things at the same time, the it is probably OK to just work on the `main` branch
+
+---
+
 # Demo
 
 - Create a new branch and open a pull request
@@ -140,12 +148,6 @@ research_paper_1
 
 ---
 
-
-## Exercise (for the future)
-
-Find a typo, mistake or a missing feature in any of the repositories under <https://github.com/orgs/scientificcomputing/repositories>, open an issue, fork the repo submit a PR.
-
----
 
 ## Versioning
 
@@ -214,6 +216,10 @@ https://semver.org
 
 ---
 
+Demo: Creating a new release
+
+---
+
 ## Exercise: bump the version
 
 - Change the version of your paper
@@ -239,6 +245,16 @@ https://semver.org
 https://choosealicense.com
 
 ---
+
+## Exercise:
+
+You would like to implement a new feature in dolfinx:
+https://github.com/FEniCS/dolfinx
+
+What license do you need to use?
+
+---
+
 
 Are you allowed to copy code from a repo with MIT license into your own repo?
 

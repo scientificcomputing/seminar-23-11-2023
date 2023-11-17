@@ -15,7 +15,7 @@ marp: true
 # Documentation
 Best Practices in Modern Software Development: 23.11.23
 
-Henrik Finsberg and Jørgen Dokken
+Jørgen Dokken
 
 
 ---

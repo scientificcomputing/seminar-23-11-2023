@@ -15,7 +15,7 @@ marp: true
 # Reproducible environments
 Best Practices in Modern Software Development: 23.11.23
 
-Henrik Finsberg, Jørgen Dokken and Benjamin Ragan-Kelly
+Benjamin Ragan-Kelly
 
 ---
 
@@ -119,6 +119,8 @@ Demo - creating a virtual environment
 
 ## Exercise
 
+
+FIXME: Use Numpy and Numba
 Create two different virtual environments called `venv1` and `venv2`, one where you install the latest version of pandas and one where you install pandas version lower than 2.0
 Verify the version using
 ```
@@ -157,7 +159,7 @@ deactivate
 
 ```toml
 [build-system]  # Setuptools + editable install
-requires = ["setuptools>=61.2"]
+requires = ["setuptools>=64.4.0", "wheel", "pip>=22.3"]
 build-backend = "setuptools.build_meta"
 
 
@@ -165,17 +167,20 @@ build-backend = "setuptools.build_meta"
 name = "my-paper"
 version = "0.1.0"
 dependencies = [
-    "matplotlib",
+    "numba",
     "numpy",
     "scipy",
 ]
+
+[tool.setuptools]
+packages = []
 ```
 
 ---
 
 ## Exercise
 
-- Add `numpy`, `scipy` and `matplotlib` as dependencies in your `pyproject.toml`
+- Add `numpy`, `scipy` and `numba` as dependencies in your `pyproject.toml`
 - Try to install these dependencies in your virtual environment by typing
     ```
     python3 -m pip install -e .
@@ -201,6 +206,8 @@ dependencies = [
 
 ## Exercise
 
+
+FIXME: How do they change with and without numba?
 - You want to use numpy version `1.21.5` for your project. Specify this in your `pyproject.toml` and compile the exact requirements
 
 
