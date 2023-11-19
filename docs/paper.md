@@ -2,7 +2,7 @@
 theme: default
 paginate: true
 header: 'Best Practices in Modern Software Development: Paper with code'
-footer: '23.11.23 - Henrik Finsberg and Jørgen Dokken'
+footer: '23.11.23 - Henrik Finsberg'
 size: 16:9
 style: |
   .small-text {

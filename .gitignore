@@ -1,6 +1,6 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
-docs/documentation.html
+docs/*.html
 _build
 ### Python ###
 # Byte-compiled / optimized / DLL files
