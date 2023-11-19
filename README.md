@@ -18,3 +18,9 @@ The agenda is as follows
 - https://scientificcomputing.github.io
 - [The Turing Way](https://the-turing-way.netlify.app/reproducible-research/reproducible-research)
 - [Scientific Python Library Development Guide](https://learn.scientific-python.org/development/)
+
+
+## Authors
+- Henrik Finsberg (henriknf@simula.no)
+- Jørgen Dokken (dokken@simula.no)
+- Benjamin Ragan-Kelly (benjaminrk@simula.no)

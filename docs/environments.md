@@ -2,7 +2,7 @@
 theme: default
 paginate: true
 header: 'Best Practices in Modern Software Development: Reproducible environments'
-footer: '23.11.23 - Henrik Finsberg and Jørgen Dokken'
+footer: '23.11.23 - Benjamin Ragan-Kelly'
 size: 16:9
 style: |
   .small-text {
