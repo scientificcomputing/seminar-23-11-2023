@@ -27,6 +27,7 @@ Henrik Finsberg, Jørgen Dokken and Min Ragan-Kelley
 * We write code to create figures and tables (**post-processing**)
 
 * Whenever you publish a paper, you need to have recipe for how to reproduce the results in the paper
+    - Many journals require that you make your code available
 
 ---
 

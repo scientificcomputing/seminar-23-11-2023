@@ -10,7 +10,6 @@ The agenda is as follows
 - Linters, formatters and continuous integration [Slides](https://scientificcomputing.github.io/seminar-23-11-2023/testing-slides.html) [Book](https://scientificcomputing.github.io/seminar-23-11-2023/docs/testing.html)
 - Documentation [Slides](https://scientificcomputing.github.io/seminar-23-11-2023/documentation-slides.html) [Book](https://scientificcomputing.github.io/seminar-23-11-2023/docs/documentation.html)
 - Example paper with code [Slides](https://scientificcomputing.github.io/seminar-23-11-2023/paper-slides.html) [Book](https://scientificcomputing.github.io/seminar-23-11-2023/docs/paper.html)
-- Packaging and Distribution (if time) [Slides](https://scientificcomputing.github.io/seminar-23-11-2023/distribution-slides.html) [Book](https://scientificcomputing.github.io/seminar-23-11-2023/docs/distribution.html)
 
 
 ## Other useful resources

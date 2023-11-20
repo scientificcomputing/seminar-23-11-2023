@@ -51,7 +51,7 @@ jobs:
           npx @marp-team/marp-cli docs/environments.md --html -o ${{ env.PUBLISH_DIR }}/environments-slides.html
           npx @marp-team/marp-cli docs/documentation.md --html -o ${{ env.PUBLISH_DIR }}/documentation-slides.html
           npx @marp-team/marp-cli docs/testing.md --html -o ${{ env.PUBLISH_DIR }}/testing-slides.html
-          npx @marp-team/marp-cli docs/distribution.md --html -o ${{ env.PUBLISH_DIR }}/paper-slides.html
+          npx @marp-team/marp-cli docs/paper.md --html -o ${{ env.PUBLISH_DIR }}/paper-slides.html
           npx @marp-team/marp-cli docs/distribution.md --html -o ${{ env.PUBLISH_DIR }}/distribution-slides.html
 
 
