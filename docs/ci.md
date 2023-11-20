@@ -16,10 +16,10 @@ marp: true
 <!-- As your research evolves from ideas into code, you would like to ensure that the code can be used by others.
 To ensure quality, consistency and reproducibility of your research, -->
 
-# Continuous Integration 
+# Continuous Integration
 <center><img src="https://i.redd.it/6u77tkmyaomz.jpg" alt="works on my machine" class="bg-primary" width="400px">
 
-Source: [Reddit - Progammer Humor - Works on my Machine](https://www.reddit.com/r/ProgrammerHumor/comments/70we66/it_works_on_my_machine/)
+Source: [Reddit - Programmer Humor - Works on my Machine](https://www.reddit.com/r/ProgrammerHumor/comments/70we66/it_works_on_my_machine/)
 
 ---
 
@@ -30,7 +30,7 @@ Source: [Reddit - Progammer Humor - Works on my Machine](https://www.reddit.com/
   - Azure DevOps
   - Circle CI
   - Travis
-  - List of [CI-serivces](https://github.com/ligurio/awesome-ci)
+  - List of [CI-services](https://github.com/ligurio/awesome-ci)
 * We will use Github Actions
 
 ---
@@ -42,7 +42,7 @@ Source: [Reddit - Progammer Humor - Works on my Machine](https://www.reddit.com/
 
 ---
 
-## When should the workflow be executed? 
+## When should the workflow be executed?
 
 name: Build documentation and upload artifact
 ```yaml
