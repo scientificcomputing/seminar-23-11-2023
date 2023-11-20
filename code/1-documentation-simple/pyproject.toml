@@ -7,9 +7,12 @@ name = "documentation-basic"
 version = "0.1.0"
 dependencies = []
 
-
 [project.optional-dependencies]
 docs = [
     "jupyter-book",
     "jupytext",
+    "docutils==0.17.1"
 ]
+
+[tool.setuptools]
+packages = []
