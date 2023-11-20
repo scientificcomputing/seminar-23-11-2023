@@ -33,7 +33,7 @@ I warn you
 ### References
 We add a bibliography file `references.bib` to our repo, and cite things as
 {cite}`Yogi2018`
-See: [Jupyterbook: Citations](https://jupyterbook.org/en/stable/content/citations.html) for more information
+See: [Jupyter-book: Citations](https://jupyterbook.org/en/stable/content/citations.html) for more information
 
 
 ## Bibliography

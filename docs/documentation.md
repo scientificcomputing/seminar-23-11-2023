@@ -53,7 +53,7 @@ Jørgen Dokken
 
 ## The README file (continued)
 
-* ### Optional
+- ### Optional
   - Badges
   - Information about how to contribute
   - License information
