@@ -83,8 +83,8 @@ docs = [
     "jupyter-book",
     "jupytext",
     "sphinxcontrib-bibtex",
-    "docutils==0.17.1" # 
-    Temporary pin due to https://sourceforge.net/p/docutils/patches/195/
+    "docutils==0.17.1"
+    # Temporary pin due to https://sourceforge.net/p/docutils/patches/195/
 ]
 ```
 
