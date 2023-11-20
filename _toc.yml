@@ -2,6 +2,7 @@ format: jb-article
 root: README
 
 sections:
+- file: docs/intro
 - file: docs/repo
 - file: docs/environments
 - file: docs/testing

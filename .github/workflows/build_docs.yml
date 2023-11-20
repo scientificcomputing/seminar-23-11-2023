@@ -47,6 +47,7 @@ jobs:
 
       - name: Build slides
         run: |
+          npx @marp-team/marp-cli docs/intro.md --html -o ${{ env.PUBLISH_DIR }}/intro-slides.html
           npx @marp-team/marp-cli docs/repo.md --html -o ${{ env.PUBLISH_DIR }}/repo-slides.html
           npx @marp-team/marp-cli docs/environments.md --html -o ${{ env.PUBLISH_DIR }}/environments-slides.html
           npx @marp-team/marp-cli docs/documentation.md --html -o ${{ env.PUBLISH_DIR }}/documentation-slides.html
