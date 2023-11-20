@@ -134,5 +134,3 @@ You should create a tag (and a release) of the code
 
 - Citation information
   - Write a `CITATION.cff`
-
----
