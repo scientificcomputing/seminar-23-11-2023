@@ -1,8 +1,8 @@
 ---
 theme: default
 paginate: true
-header: 'Best Practices in Modern Software Development: Documentation'
-footer: '23.11.23 - Jørgen Dokken'
+header: "Best Practices in Modern Software Development: Documentation"
+footer: "23.11.23 - Jørgen Dokken"
 size: 16:9
 style: |
   .small-text {
@@ -13,21 +13,21 @@ marp: true
 ---
 
 # Documentation
+
 Best Practices in Modern Software Development: 23.11.23
 
 Jørgen Dokken
-
 
 ---
 
 ## What is documentation?
 
 * Background and motivation
-    - What do you try to solve?
+  * What do you try to solve?
 * Instructions on how to install the software and necessary dependencies
 * Instructions on how to use the software
-    - Tutorials / demos
-    - API documentation
+  * Tutorials / demos
+  * API documentation
 * Instructions on how to get help or contribute
 * https://diataxis.fr/
 
@@ -37,7 +37,6 @@ Jørgen Dokken
 
 * Make it easier for users (including yourself) to understand and use your code
 * Make it easier for other to contribute (file issues / fix bugs)
-* Which will make your software better
 
 ---
 
@@ -52,7 +51,9 @@ Jørgen Dokken
 
 ---
 
-- Could include
+## The README file (continued)
+
+* ### Optional
   - Badges
   - Information about how to contribute
   - License information
@@ -60,21 +61,19 @@ Jørgen Dokken
   - Example
   - How to cite
   - Screenshots / figures
-- https://readme.so
-
+* README skeleton generator: https://readme.so
 
 ---
-
 
 ## Using JupyterBook to create documentation
 
 - [JupyterBook](https://jupyterbook.org/en/stable/intro.html) is a powerful framework for writing documentation
-- You can use Markdown (Myst), Notebooks and pure python files in your documentation.
-- It integrates well with latex (math) and Sphinx (for parsing docstrings)
+* You can use Markdown (Myst), Notebooks and pure Python files in your documentation.
+* It integrates well with LaTeX (math) and Sphinx (for parsing docstrings)
 
 ---
 
-## Add extra dependencies for docs
+## Add extra dependencies to `pyproject.toml` for docs
 
 To use `jupyter-book` in your project you should add some extra dependencies
 
@@ -84,6 +83,8 @@ docs = [
     "jupyter-book",
     "jupytext",
     "sphinxcontrib-bibtex",
+    "docutils==0.17.1" # 
+    Temporary pin due to https://sourceforge.net/p/docutils/patches/195/
 ]
 ```
 
@@ -92,21 +93,21 @@ docs = [
 ## Compile the exact versions your use with pip-compile
 
 Use
+
 ```
 pip-compile --extra=docs --output-file=requirements-docs.txt pyproject.toml
 ```
 
-
 ---
 
-## Need to create a config file called `_config.yml`
-
+## Documentation configuration
 ```yaml
 # _config.yml
 title: Example paper
 author: Henrik Finsberg and Jørgen Dokken
 copyright: "2023"
 only_build_toc_files: true
+bibtex_bibfiles: "references.bib"
 
 parse:
   myst_enable_extensions:
@@ -114,9 +115,9 @@ parse:
     - dollarmath
     - linkify
 
-
 sphinx:
   config:
+    bibtex_reference_style: author_year
     nb_execution_show_tb: True
     html_theme_options:
       navigation_with_keys: false
@@ -125,11 +126,6 @@ sphinx:
         .py:
             - jupytext.reads
             - fmt: py
-
-  extra_extensions:
-  - 'sphinx.ext.autodoc'
-  - 'sphinx.ext.napoleon'
-  - 'sphinx.ext.viewcode'
 
 exclude_patterns: [".pytest_cache/*", ".github/*"]
 ```
@@ -153,11 +149,13 @@ chapters:
 ## Building the book
 
 Install JupyterBook
+
 ```
 python3 -m pip install jupyter-book
 ```
 
 Build the book (in the root where `_config.yml` amd `_toc.yml` is located).
+
 ```
 jupyter-book build .
 ```
@@ -168,40 +166,21 @@ Demo `code/1-documentation-basic`
 
 ---
 
-## Documenting code using docstrings and type hints
-
-- There are standard ways to document your code
-
-- We recommend to use either the Google style or Numpy style
-
-- https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html#google-vs-numpy
-
-
----
-
-## VSCode extension to generate docstrings
-
-https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring
-
-![w:700 center](https://github.com/NilsJPWerner/autoDocstring/raw/HEAD/images/demo.gif)
-
----
-
 ## Using MyST-Markdown to write content
 
-- JupyterBook support a flavor of Markdown called *MyST*.
+- JupyterBook support a flavor of Markdown called _MyST_.
 - Here you write so called directives
-    ````
-    ```{directivename}
-    Content
-    ```
-    ````
-    e.g
-    ````
-    ```{math}
-    x^2 + y^2 = z^2
-    ```
-    ````
+  ````
+  ```{directivename}
+  Content
+  ```
+  ````
+  e.g
+  ````
+  ```{math}
+  x^2 + y^2 = z^2
+  ```
+  ````
 
 ---
 
@@ -215,7 +194,9 @@ It is also possible to use MyST to labels to equations
 w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
 ```
 ````
+
 and then use
+
 ```
 - A link to an equation directive: {eq}`my_label`
 ```
@@ -319,7 +300,7 @@ name: Github Pages
 
 on:
   push:
-    branches: [main]  # Only run on push to main
+    branches: [main] # Only run on push to main
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -367,3 +348,29 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v2
 ```
+
+---
+## API documentation
+
+- Jupyter-book supports auto-documentation features from Sphinx.
+- More information at: https://jupyterbook.org/en/stable/advanced/developers.html?highlight=api#developer-workflows
+
+---
+
+## Documenting code using docstrings and type hints
+
+- There are standard ways to document your code
+
+- We recommend to use either the Google style or Numpy style
+
+  - https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html#google-vs-numpy
+
+---
+
+## VSCode extension to generate docstrings
+
+https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring
+
+![w:700 center](https://github.com/NilsJPWerner/autoDocstring/raw/HEAD/images/demo.gif)
+
+---
