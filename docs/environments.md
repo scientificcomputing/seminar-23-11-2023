@@ -2,7 +2,7 @@
 theme: default
 paginate: true
 header: 'Best Practices in Modern Software Development: Reproducible environments'
-footer: '23.11.23 - Benjamin Ragan-Kelly'
+footer: '23.11.23 - Min Ragan-Kelley'
 size: 16:9
 style: |
   .small-text {
@@ -15,7 +15,7 @@ marp: true
 # Reproducible environments
 Best Practices in Modern Software Development: 23.11.23
 
-Benjamin Ragan-Kelly
+Min Ragan-Kelley
 
 ---
 

@@ -16,7 +16,7 @@ marp: true
 
 23.11.23
 
-Henrik Finsberg, Jørgen Dokken and Benjamin Ragan-Kelly
+Henrik Finsberg, Jørgen Dokken and Min Ragan-Kelley
 
 ---
 

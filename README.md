@@ -23,4 +23,4 @@ The agenda is as follows
 ## Authors
 - Henrik Finsberg (henriknf@simula.no)
 - Jørgen Dokken (dokken@simula.no)
-- Benjamin Ragan-Kelly (benjaminrk@simula.no)
+- Min Ragan-Kelley (benjaminrk@simula.no)
