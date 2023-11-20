@@ -52,3 +52,4 @@ jobs:
         with:
           path: ${{ env.PUBLISH_DIR }}
           if-no-files-found: error
+          name: documentation
