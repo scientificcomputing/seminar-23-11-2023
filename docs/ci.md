@@ -98,7 +98,7 @@ on:
 ```
 * Triggered at a specific UCT time in POSIX cron syntax
 * Easy interpreter at: [Crontab.guru](https://crontab.guru/#0_9_*_*_1)
-
+  
 ---
 
 ### Run from another workflow
@@ -172,7 +172,7 @@ jobs:
   - Windows (2019, 2022)
   - Mac (macos-11, macos-12)
 
-
+    
 ---
 
 ## Complex dependencies? Use containers!
@@ -268,6 +268,7 @@ jobs:
           if-no-files-found: error
           name: documentation
 ```
+<img src="./artifact.png" alt="Github artifact" class="bg-primary" width="700px">
 
 ---
 
