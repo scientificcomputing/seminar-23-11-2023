@@ -11,4 +11,4 @@ jobs:
     test:
         steps:
             - name: "Use remote action"
-              uses: jorgensd/actions/install_dolfinx
+              uses: jorgensd/actions@v0.1.0
