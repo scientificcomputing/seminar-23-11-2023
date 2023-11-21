@@ -6,6 +6,7 @@ sections:
 - file: docs/repo
 - file: docs/environments
 - file: docs/testing
+- file: docs/ci
 - file: docs/documentation
 - file: docs/paper
 - file: docs/distribution
