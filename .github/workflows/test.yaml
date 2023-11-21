@@ -12,4 +12,4 @@ jobs:
         container: ghcr.io/fenics/dolfinx/dolfinx:nightly
         steps:
             - name: "Use remote action"
-              uses: jorgensd/actions@v0.1.0
+              uses: jorgensd/actions/install-dolfinx@v0.1.0
