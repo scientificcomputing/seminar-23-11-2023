@@ -373,4 +373,3 @@ https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring
 
 ![w:700 center](https://github.com/NilsJPWerner/autoDocstring/raw/HEAD/images/demo.gif)
 
----
