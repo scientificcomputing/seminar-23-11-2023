@@ -221,7 +221,6 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${PYTHON_VERSION}
-
 ```
 
 ---
@@ -237,4 +236,48 @@ jobs:
         basix: main
         petsc_arch: ${PETSC_ARCH}
 ```
-Custom action available 
+
+---
+
+### You can use actions across repositories
+
+Example from: [https://github.com/jorgensd/actions](https://github.com/jorgensd/actions/)
+```yaml
+name: Use a remote action
+on:
+  push:
+    branches: ["dokken/ci"]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: ghcr.io/fenics/dolfinx/dolfinx:nightly
+    steps:
+      - name: "Use remote action"
+        uses: jorgensd/actions/install-dolfinx@v0.1.0
+```
+
+---
+
+### Upload data
+
+```yaml
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          path: ${{ env.PUBLISH_DIR }}
+          if-no-files-found: error
+          name: documentation
+```
+
+---
+
+### Download data
+
+```yaml
+      - name: Download docs artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: documentation
+          path: "./public"
+
+```
