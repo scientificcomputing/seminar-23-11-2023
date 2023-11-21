@@ -8,6 +8,11 @@ style: |
   .small-text {
     font-size: 0.55rem;
   }
+  .columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
 html: true
 marp: true
 ---
@@ -17,21 +22,39 @@ marp: true
 To ensure quality, consistency and reproducibility of your research, -->
 
 # Continuous Integration
-<img src="https://i.redd.it/6u77tkmyaomz.jpg" alt="works on my machine" class="bg-primary" width="400px">
+<center><img src="https://i.redd.it/6u77tkmyaomz.jpg" alt="works on my machine" class="bg-primary" width="400px">
 
-Source: [Reddit - Programmer Humor - Works on my Machine](https://www.reddit.com/r/ProgrammerHumor/comments/70we66/it_works_on_my_machine/)
+<a href="https://www.reddit.com/r/ProgrammerHumor/comments/70we66/it_works_on_my_machine/"> Reddit - Programmer Humor - Works on my Machine</a>
+</center>
+
 
 ---
 
 ## How to start?
+<div class="columns">
+<div>
+ <ul>
+  <li>Many ways to do CI; use the one you prefer</li>
+  <ul>
+  <li>Github Actions</li>
+  <li>Azure DevOps</li>
+  <li>Circle CI</li>
+  <li>Travis</li>
+  </ul>
+  <li>List of
+<a href="https://github.com/ligurio/awesome-ci"> CI services</a>
+</ul>
 
-* Many ways to do CI; use the one you prefer
-  - Github Actions
-  - Azure DevOps
-  - Circle CI
-  - Travis
-  - List of [CI-services](https://github.com/ligurio/awesome-ci)
 * We will use Github Actions
+</div>
+<div>
+ <figure>
+<img src="https://the-turing-way.netlify.app/_images/continuous-integration-may19.svg" alt="works on my machine" class="bg-primary" width="400px">
+  <figcaption> Turing Way - CC-BY 4.0 licence.  DOI:
+  <a href="https://doi.org/10.5281/zenodo.3332807"> 10.5281/zenodo.3332807</a>
+</ul>
+ </figure>
+<div>
 
 ---
 
@@ -98,7 +121,7 @@ on:
 ```
 * Triggered at a specific UCT time in POSIX cron syntax
 * Easy interpreter at: [Crontab.guru](https://crontab.guru/#0_9_*_*_1)
-  
+
 ---
 
 ### Run from another workflow
@@ -172,7 +195,7 @@ jobs:
   - Windows (2019, 2022)
   - Mac (macos-11, macos-12)
 
-    
+
 ---
 
 ## Complex dependencies? Use containers!
