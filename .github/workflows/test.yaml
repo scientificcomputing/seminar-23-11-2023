@@ -6,9 +6,10 @@ on:
 
 
 jobs:
-    runs-on: ubuntu-latest
-    container: ghcr.io/fenics/dolfinx/dolfinx:nightly
+
     test:
+        runs-on: ubuntu-latest
+        container: ghcr.io/fenics/dolfinx/dolfinx:nightly
         steps:
             - name: "Use remote action"
               uses: jorgensd/actions@v0.1.0
