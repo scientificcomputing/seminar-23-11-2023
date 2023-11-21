@@ -6,7 +6,7 @@ on:
 
 
 jobs:
-    runs-on: "ubuntu:22.04"
+    runs-on: ubuntu-latest
     container: ghcr.io/fenics/dolfinx/dolfinx:nightly
     test:
         steps:
