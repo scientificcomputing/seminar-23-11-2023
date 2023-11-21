@@ -7,5 +7,5 @@ name = "sc-seminar-23-11-2023"
 version = "0.1.0"
 dependencies = ["jupyter-book", "jupytext", "pre-commit"]
 
-[setuptools.build]
+[tool.setuptools]
 packages = []
