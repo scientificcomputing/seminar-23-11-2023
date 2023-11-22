@@ -243,7 +243,7 @@ parse:
 ```yaml
 name: Build docs
 on:
-  push: 
+  push:
     branches: "main"
 
 jobs:
