@@ -39,7 +39,7 @@ jobs:
       - name: Build slides
         run: |
           for doc in $(ls docs/*.md); do
-            npx @marp-team/marp-cli ${doc} --html -o ${{ env.PUBLISH_DIR }}/$(basename ${doc::-3}).html
+            npx @marp-team/marp-cli ${doc} --html -o ${{ env.PUBLISH_DIR }}/$(basename ${doc::-3})-slides.html
           done
 
       - name: Upload artifact
