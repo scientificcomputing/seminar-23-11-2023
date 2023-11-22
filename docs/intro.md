@@ -26,24 +26,29 @@ Henrik Finsberg, Jørgen Dokken and Min Ragan-Kelley
 * We write code to **run simulations**
 * We write code to create figures and tables (**post-processing**)
 
-* Whenever you publish a paper, you need to have recipe for how to reproduce the results in the paper
-    - Many journals require that you make your code available
+
+---
+
+
+*Whenever you publish a paper, you need to have recipe for how to reproduce the results in the paper*
+
+* Many journals require that you make your code available
 
 ---
 
 ## Goal of this workshops
 
-- 11.15 - 11.45: Code and data repositories (Henrik)
-- 11.45 - 12.15: Reproducible environments (Min)
-- 12.15 - 12.45: Lunch
-- 12.45 - 13.15: Linters, formatters and continuous integration (Henrik + Jørgen)
-- 13.15 - 13.45: Documentation (Jørgen)
-- 13.45 - 14.00: Break
-- 14.00 - 14.30: A paper with code (Henrik)
+- 11.00 - 11.30: Code and data repositories (Henrik)
+- 11.30 - 12.00: Reproducible environments (Min)
+- 12.00 - 12.30: Lunch
+- 12.30 - 13.00: Linters, formatters and continuous integration (Henrik + Jørgen)
+- 13.00 - 13.30: Documentation (Jørgen)
+- 13.30 - 13.45: Break
+- 13.45 - 14.15: A paper with code (Henrik)
 
 ---
 
 ## Material from the workshop
 
 - https://github.com/scientificcomputing/seminar-23-11-2023
-- https://scientificcomputing.github.io/seminar-23-11-2023/README.html
+- https://scientificcomputing.github.io/seminar-23-11-2023

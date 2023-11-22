@@ -110,7 +110,11 @@ Several ways to do this:
 * Ideally you should share the data on Zenodo (https://zenodo.org) when publishing the paper. This will make sure you get a DOI for the data.
   - It is also possible to upload data with restricted data on Zenodo
 * Create a script for downloading data
+  - https://github.com/scientificcomputing/example-paper-fenics
+  - Dropbox: Use `?dl=1`
+  - Google drive: `https://drive.google.com/uc?export=download&id=DRIVE_FILE_ID`
 
+---
 
 ## Make sure to create a tag / release
 
@@ -134,3 +138,11 @@ You should create a tag (and a release) of the code
 
 - Citation information
   - Write a `CITATION.cff`
+
+
+---
+
+## Next steps
+
+- Check out the material at https://github.com/scientificcomputing/seminar-23-11-2023
+- Ask us for help - email, slack or in the office
