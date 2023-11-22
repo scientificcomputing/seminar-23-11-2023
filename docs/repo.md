@@ -32,16 +32,16 @@ Henrik Finsberg
 
 ## Setting up your first project
 
-- Cookiecutters
-    - Script that generate the files based on a few questions
-    - https://github.com/scientificcomputing/generate-paper
-    - https://github.com/scientific-python/cookie
-    - https://www.cookiecutter.io/templates
 - Templates
     - Copy all files from an existing repository
     - https://github.com/scientificcomputing/example-paper
     - https://github.com/scientificcomputing/example-paper-fenics
 
+- Cookiecutters
+    - Script that generate the files based on a few questions
+    - https://github.com/scientificcomputing/generate-paper
+    - https://github.com/scientific-python/cookie
+    - https://www.cookiecutter.io/templates
 
 ---
 
@@ -90,12 +90,6 @@ research_paper_1
 
 ---
 
-![bg w:50%](https://the-turing-way.netlify.app/_images/healthy-research-tree.jpg)
-<style scoped>section { justify-content: end; }</style>
-<p class="small-text">Image is used under a CC-BY 4.0 licence. DOI: 10.5281/zenodo.3332807.</p>
-
----
-
 ## Code review process
 
 * Open issue describing the problem. Use the issue tracker to discuss whether this needs to be solved.
@@ -112,13 +106,7 @@ If you work alone and don't work on multiple things at the same time, the it is 
 
 ---
 
-# Demo
-
-- Create a new branch and open a pull request
-
----
-
-# Exercise
+# Demo / Exercise
 
 - Create a new repo on GitHub (ex: `example-paper`)
 - Run the cookiecutter and add all the files in a single commit
@@ -152,7 +140,8 @@ If you work alone and don't work on multiple things at the same time, the it is 
 ## Versioning
 
 * When you think that your code is ready for external users, it is time to create your first release
-* Your code should get a version number
+* Your code should get a version number.
+* Create a release when you submit your paper.
 * `MAJOR.MINOR.MICRO`
 * Specify the version number in `pyproject.toml`
 * Semantic or Calendar based versioning
@@ -177,7 +166,7 @@ https://calver.org
 https://semver.org
 
 - `major.minor.micro` e.g `0.1.2`
-- Bump patch: Bug fixes not affecting the API
+- Bump micro / patch: Bug fixes not affecting the API
 - Bump minor: Backward compatible API additions/changes
 - Bump major: Backward incompatible API changes
 - Typically start with `0` major version and bump to `1` when ready for users.
@@ -216,11 +205,7 @@ https://semver.org
 
 ---
 
-Demo: Creating a new release
-
----
-
-## Exercise: bump the version
+## Demo / Exercise: bump the version
 
 - Change the version of your paper
 - Create a new tag and release
@@ -248,12 +233,30 @@ https://choosealicense.com
 
 ## Exercise:
 
-You would like to implement a new feature in dolfinx:
+You want to use dolfinx:
 https://github.com/FEniCS/dolfinx
 
 What license do you need to use?
 
 ---
+
+You can choose if you want to use GPL or LGPL.
+- If you choose GPL, you need to use GPL license
+- If you choose LGPL, you can choose another license
+
+---
+
+## Exercise:
+
+You would like to implement a new feature in dolfinx and use it in your code:
+https://github.com/FEniCS/dolfinx
+
+What license do you need to use?
+* GPL or LGPL
+
+---
+
+
 
 
 Are you allowed to copy code from a repo with MIT license into your own repo?

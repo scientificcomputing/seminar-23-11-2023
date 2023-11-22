@@ -2,7 +2,7 @@
 theme: default
 paginate: true
 header: 'Best Practices in Modern Software Development: Linters, formatters and pre-commit hooks'
-footer: '23.11.23 - Henrik Finsberg and Jørgen Dokken'
+footer: '23.11.23 - Henrik Finsberg'
 size: 16:9
 style: |
   .small-text {
@@ -15,7 +15,7 @@ marp: true
 # Linters, formatters and pre-commit hooks
 Best Practices in Modern Software Development: 23.11.23
 
-Henrik Finsberg and Jørgen Dokken
+Henrik Finsberg
 
 ---
 
@@ -31,7 +31,7 @@ Henrik Finsberg and Jørgen Dokken
 - [`flake8`](https://github.com/PyCQA/flake8): points out general problems
 - [`ruff`](https://github.com/astral-sh/ruff): similar to `flake8` only more and faster (recommended). `ruff` also include features from `isort`, `pyupgrade`, `black`, ...
 
-* You can install them with `pip` or `pipx` [FIXME: Talk about `pipx`?]
+* You can install them with `pip` or `pipx`
 
 ---
 
