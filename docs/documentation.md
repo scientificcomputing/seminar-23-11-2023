@@ -22,21 +22,36 @@ Jørgen Dokken
 
 ## What is documentation?
 
-* Background and motivation
-  * What do you try to solve?
-* Instructions on how to install the software and necessary dependencies
-* Instructions on how to use the software
-  * Tutorials / demos
-  * API documentation
-* Instructions on how to get help or contribute
-* https://diataxis.fr/
+<div style="display:contents;" data-marpit-fragment>
+
+- Background and motivation
+  - What do problem are you trying to solve in this repository to solve?
+
+</div>
+
+<div style="display:contents;" data-marpit-fragment>
+
+- Instructions on how to install the software and necessary dependencies
+- Instructions on how to use the software
+  - Tutorials / demos
+  - API documentation
+  
+- Instructions on how to get help or contribute
+</div> <div style="display:contents;" data-marpit-fragment>
+
+- Guide to write tutorials: https://diataxis.fr/
+</div>
 
 ---
 
 ## Why do we need documentation?
 
-* Make it easier for users (including yourself) to understand and use your code
-* Make it easier for other to contribute (file issues / fix bugs)
+<div style="display:contents;" data-marpit-fragment>
+
+- Make it easier for users (including yourself) to understand and use your code
+- Make it easier for other to contribute (file issues / fix bugs)
+
+</div>
 
 ---
 
@@ -245,16 +260,12 @@ name: Build docs
 on:
   push:
     branches: "main"
-
 jobs:
   build_docs:
     runs-on: ubuntu-22.04
-
     steps:
       - uses: actions/checkout@v4
-
-      - name: Install Python
-        uses: actions/setup-python@v4
+      - uses: actions/setup-python@v4
         with:
           python-version: "3.10"
 
@@ -266,14 +277,12 @@ jobs:
       - name: Build docs
         run: python3 -m jupyter book build .
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v3
         with:
           name: documentation
           path: ./_build/html
           if-no-files-found: error
 ```
-
 ---
 
 ### Publishing the book to GitHub pages
@@ -322,8 +331,7 @@ jobs:
         with:
           path: "./public"
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
+      - uses: actions/configure-pages@v3
 
       - name: Deploy to GitHub Pages
         id: deployment
