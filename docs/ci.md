@@ -35,6 +35,7 @@ To ensure quality, consistency and reproducibility of your research, -->
 <div>
  <ul>
   <li>Many ways to do CI; use the one you prefer</li>
+  <div style="display:contents;" data-marpit-fragment>
   <ul>
   <li>Github Actions</li>
   <li>Azure DevOps</li>
@@ -43,6 +44,8 @@ To ensure quality, consistency and reproducibility of your research, -->
   </ul>
   <li>List of
 <a href="https://github.com/ligurio/awesome-ci"> CI services</a>
+  </div>
+
 </ul>
 
 * We will use Github Actions
@@ -91,8 +94,14 @@ on:
   pull_request:
     branches: main
 ```
-* Workflow is triggered whenever a pull request is made against the main branch
-* Can make a list of branches, or include all (`"*"`, or no branch `"!*"` or patterns `"v*"`)
+
+<div style="display:contents;" data-marpit-fragment>
+
+**Triggered when**
+* A pull request is made against the `main` branch
+* Can make a list of branches `[development, main, "v[0-9].[0-9]+.[0-9]+"]`
+* [Cheatsheet](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet) for patterns 
+</div>
 
 ---
 ### Run on push
@@ -105,10 +114,13 @@ on:
       - "v*"
 
 ```
-#### Triggered whenever
+
+<div style="display:contents;" data-marpit-fragment>
+
+**Triggered when**
 * A push a commited to any branch
 * A tag starting with `v` is created
-
+</div>
 
 ---
 
@@ -119,8 +131,13 @@ on:
  schedule:
     - cron: 0 9 * * 1
 ```
-* Triggered at a specific UCT time in POSIX cron syntax
-* Easy interpreter at: [Crontab.guru](https://crontab.guru/#0_9_*_*_1)
+
+<div style="display:contents;" data-marpit-fragment>
+
+**Triggered when**
+- Specific UCT time in POSIX cron syntax
+- Easy interpreter at: [Crontab.guru](https://crontab.guru/#0_9_*_*_1)
+</div>
 
 ---
 
@@ -158,8 +175,11 @@ Source: [https://github.com/jorgensd/dolfinx_mpc/actions/runs/6932364745](https:
 on:
   workflow_dispatch:
 ```
-- Run a workflow manually on CI
+
+<div style="display:contents;" data-marpit-fragment>
+Run a workflow manually on CI
 <img src="./workflow_dispatch.png" alt="Manual workflow call" class="bg-primary" width="1000px">
+</div>
 
 ---
 
@@ -194,7 +214,6 @@ jobs:
   - Ubuntu (20.04, 22.04)
   - Windows (2019, 2022)
   - Mac (macos-11, macos-12)
-
 
 ---
 
@@ -232,6 +251,18 @@ jobs:
 ```
 
 ---
+
+## Exercise
+
+- Make a branch in your repository
+- Create a workflow that runs on Ubuntu 22.04
+- Workflow should run:
+  - On every commit on main
+  - On every pull request to any branch
+- List the files in the repository
+
+---
+
 
 ### Actions can take inputs
 
