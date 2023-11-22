@@ -100,21 +100,27 @@ pip-compile --extra=docs --output-file=requirements-docs.txt pyproject.toml
 
 ---
 
-## Documentation configuration
+## Documentation configuration (`_config.yml`)
+### Required info
 ```yaml
-# _config.yml
 title: Example paper
 author: Henrik Finsberg and Jørgen Dokken
 copyright: "2023"
-only_build_toc_files: true
 bibtex_bibfiles: "references.bib"
+```
 
+---
+
+## Documentation configuration (`_config.yml`)
+**Recommended configuration**
+```yaml
+only_build_toc_files: true
+exclude_patterns: [".pytest_cache/*", ".github/*"]
 parse:
   myst_enable_extensions:
     - amsmath
     - dollarmath
     - linkify
-
 sphinx:
   config:
     bibtex_reference_style: author_year
@@ -126,13 +132,11 @@ sphinx:
         .py:
             - jupytext.reads
             - fmt: py
-
-exclude_patterns: [".pytest_cache/*", ".github/*"]
 ```
 
 ---
 
-## And a table of contents called `_toc.yml`
+## And a table of contents (`_toc.yml`)
 
 ```yaml
 format: jb-book
@@ -153,12 +157,13 @@ Install JupyterBook
 ```
 python3 -m pip install jupyter-book
 ```
+<div style="display:contents;" data-marpit-fragment>
 
 Build the book (in the root where `_config.yml` amd `_toc.yml` is located).
-
 ```
 jupyter-book build .
 ```
+<div/>
 
 ---
 
@@ -221,56 +226,38 @@ parse:
 
 ## More MyST features
 
-- Create citations: https://jupyterbook.org/en/stable/tutorials/references.html#create-a-citation
-- Adding images: https://jupyterbook.org/en/stable/content/figures.html
-- More: https://jupyterbook.org/en/stable/content/index.html
+* Create citations: https://jupyterbook.org/en/stable/tutorials/references.html#create-a-citation
+* Adding images: https://jupyterbook.org/en/stable/content/figures.html
+* More: https://jupyterbook.org/en/stable/content/index.html
 
 ---
 
 ## Publishing the book to GitHub pages
 
 - Create a new file `.github/workflows/build_docs.yml` which contains a workflow for building the docs
-- Also remember to go to your [repository settings on GitHub](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow) to allow for GitHub pages, see
+- Also remember to go to your [repository settings on GitHub](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow) to allow for GitHub pages
 
 ---
 
+### Example workflow
 ```yaml
-# Simple workflow for deploying static content to GitHub Pages
 name: Build docs
-
 on:
-  workflow_dispatch:
-  workflow_call:
-  pull_request:
-    branches:
-      - main
+  push:
+    branches: "main"
 
 jobs:
   build_docs:
     runs-on: ubuntu-22.04
-    env:
-      PYTHON_VERSION: "3.10"
-      PUBLISH_DIR: ./_build/html
 
     steps:
-      # checkout the repository
       - uses: actions/checkout@v4
 
-      # setup Python
-      - name: Install Python ${{ env.PYTHON_VERSION }}
+      - name: Install Python
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
+          python-version: "3.10"
 
-      # preserve pip cache to speed up installation
-      - name: Cache pip
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          # Look to see if there is a cache hit for the corresponding requirements file
-          key: ${{ runner.os }}-pip-${{ hashFiles('*requirements-docs.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
       - name: Install Python dependencies
         run: |
           python3 -m pip install --upgrade pip
@@ -280,35 +267,33 @@ jobs:
         run: python3 -m jupyter book build .
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v3
         with:
           name: documentation
-          path: ${{ env.PUBLISH_DIR }}
+          path: ./_build/html
           if-no-files-found: error
 ```
 
 ---
 
-## Publishing the book to GitHub pages
+### Publishing the book to GitHub pages
 
 - Create a new file `.github/workflows/publish_docs.yml` which contains a workflow for publishing the docs to github pages
 
 ---
 
+### Deploying the book
 ```yaml
 name: Github Pages
-
 on:
   push:
-    branches: [main] # Only run on push to main
+    branches: [main]
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: true
@@ -326,8 +311,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - name: Download docs artifact
-        # docs artifact is uploaded by build-docs job
+      - name: Download docs artifact from build-docs
         uses: actions/download-artifact@v3
         with:
           name: documentation
@@ -337,9 +321,6 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           path: "./public"
-
-      - name: Checkout
-        uses: actions/checkout@v4
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
