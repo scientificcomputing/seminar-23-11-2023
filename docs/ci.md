@@ -100,7 +100,7 @@ on:
 **Triggered when**
 * A pull request is made against the `main` branch
 * Can make a list of branches `[development, main, "v[0-9].[0-9]+.[0-9]+"]`
-* [Cheatsheet](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet) for patterns 
+* [Cheatsheet](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet) for patterns
 </div>
 
 ---

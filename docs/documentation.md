@@ -35,7 +35,7 @@ Jørgen Dokken
 - Instructions on how to use the software
   - Tutorials / demos
   - API documentation
-  
+
 - Instructions on how to get help or contribute
 </div> <div style="display:contents;" data-marpit-fragment>
 
