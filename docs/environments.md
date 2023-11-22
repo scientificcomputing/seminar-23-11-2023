@@ -13,14 +13,15 @@ marp: true
 ---
 
 # Reproducible environments
+
 Best Practices in Modern Software Development: 23.11.23
 
 Min Ragan-Kelley
 
 ---
 
-- A module is a file consisting of Python code
-- A package is a hierarchical file directory structure that consists of modules and sub-packages
+- A __module__ is a file consisting of Python code
+- A __package__ is a hierarchical file directory structure that consists of modules and sub-packages
 
 ![bg fit right](https://uio-in3110.github.io/_images/python_structure_options.svg)
 
@@ -45,7 +46,7 @@ from itertools import *
 
 ---
 
-## Using packages
+### Using packages
 
 ```python
 from scipy.optimize import minimize
@@ -58,108 +59,156 @@ from scipy.optimize import minimize
 
 ---
 
-## How does python know which modules and packages that are available?
+### Where does Python find modules?
+
+```python
+In [1]: import asyncio, numpy
+
+In [2]: asyncio.__file__
+Out[2]: '/usr/local/lib/python3.12/asyncio/__init__.py'
+
+In [3]: numpy.__file__
+Out[3]: '/home/myname/.local/lib/python3.12/site-packages/numpy/__init__.py'
+```
+
+---
+
+### How does python know which modules and packages that are available?
 
 ```python
 import sys
 
-# Notice the order
 sys.path
 ```
 
----
+```python
+['',
+ '/usr/local/lib/python312.zip',
+ '/usr/local/lib/python3.12',
+ '/usr/local/lib/python3.12/lib-dynload',
+ '/home/myname/.local/lib/python3.12/site-packages',
+ '/usr/local/lib/python3.12/site-packages']
+```
 
-## What is a development environment?
-
-* An environment where you install your software in isolation from your system. Why?
-    * Conflicting dependency versions
-    * Easier to upgrade
-    * Easier to dispose and start for scratch
-    * You should always use a virtual environment!
-
-* Three options
-    - python virtual environments
-    - `conda` environments
-    - Docker
+The order is important!
 
 ---
 
-# Python virtual environments
+## What is an environment?
 
-- Python comes with a built-in library for creating virtual environments
+- An __environment__ is where you install your software in isolation from your system or other projects. __Why?__
+  * Conflicting dependency versions
+  * Easier to upgrade
+  * Easier to dispose of and start for scratch
+  * It's always a good idea to use environments!
 
-    ```
-    python3 -m venv venv
-    ```
-    This will create a folder called `venv` containing your virtual environment
+* Three main options
+  - Python virtual environments
+  - Conda environments
+  - Containers (Docker)
+
+---
+
+### How and why to specify environments
+
+- An __environment specification__ is a _description_ of what packages should go in an environment.
+
+* When you _specify_ your environment, it's easier for you (or someone else!) to __reproduce__ your environment.
+
+* Tools turn specifications into environments (and _vice versa_!)
+  - `pip` - `requirements.txt`
+  - `conda` - `environment.yml`
+  - `Docker` - `Dockerfile`
+
+---
+
+## Python virtual environments
+
+- Python comes with a built-in tool for creating virtual environments
+
+  ```
+  python3 -m venv ./my-env
+  ```
+
+  This will create a folder called `my-env` containing your virtual environment
 
 * Activate virtual environment
-    ```
-    . ./venv/bin/activate
-    ```
+
+  ```bash
+  source ./my-env/bin/activate
+  ```
 
 ---
 
-* Now you can install the dependencies you need
-    ```
-    python3 -m pip install pandas
-    ```
+- Now you can install the dependencies you need
 
-* To deactivate your virtual environment you simply type
-    ```
-    deactivate
-    ```
+  ```
+  python3 -m pip install pandas
+  ```
 
----
+* To deactivate your virtual environment, type
 
-Demo - creating a virtual environment
-
+  ```
+  deactivate
+  ```
 
 ---
 
-## Exercise
+### Demo
+
+creating a virtual environment
 
 
-FIXME: Use Numpy and Numba
-Create two different virtual environments called `venv1` and `venv2`, one where you install the latest version of pandas and one where you install pandas version lower than 2.0
+---
+
+### Exercise
+
+
+Create two different virtual environments called `latest` and `old-pandas`, one where you install the latest version of pandas and one where you install pandas version lower than 2.0
+
 Verify the version using
-```
+
+```bash
 python3 -c "import pandas; print(pandas.__version__)"
 ```
 
 ---
 
-```
-python3 -m venv venv1
-. venv1/bin/activate
+### Example
+
+```bash
+python3 -m venv latest
+. latest/bin/activate
 python3 -m pip install pandas
-deactivate
-python3 -m venv venv2
-. venv2/bin/activate
-python3 -m pip install "pandas<2.0"
 deactivate
 ```
 
+```bash
+python3 -m venv old-pandas
+. old-pandas/bin/activate
+python3 -m pip install "pandas<2.0"
+deactivate
+```
 
 ---
 
 ## Creating a `pyproject.toml`
 
-- `pyproject.toml` is the recommended way to specify project metadata
+- `pyproject.toml` is the recommended way to specify project metadata for Python projects
 - Minimum metadata
     - name
+    - version
     - authors
     - license
-    - version
     - dependencies
 
 ---
 
-## Example `pyproject.toml`
+### Example `pyproject.toml`
 
 ```toml
-[build-system]  # Setuptools + editable install
-requires = ["setuptools>=64.4.0", "wheel", "pip>=22.3"]
+[build-system]
+requires = ["setuptools>=64.4.0"]
 build-backend = "setuptools.build_meta"
 
 
@@ -167,64 +216,69 @@ build-backend = "setuptools.build_meta"
 name = "my-paper"
 version = "0.1.0"
 dependencies = [
-    "numba",
-    "numpy",
-    "scipy",
+  "numpy",
 ]
 
 [tool.setuptools]
+# empty packages when your project not a 'real' package
+# (i.e. only dependencies, nothing to actually install)
 packages = []
 ```
 
 ---
 
-## Exercise
+### Exercise
 
-- Add `numpy`, `scipy` and `numba` as dependencies in your `pyproject.toml`
+- Add `numpy`, `scipy`, and `numba` as dependencies in your `pyproject.toml`
 - Try to install these dependencies in your virtual environment by typing
-    ```
-    python3 -m pip install -e .
-    ```
+
+  ```
+  python3 -m pip install -e .
+  ```
 
 ---
 
-## Pinning the exact versions of the libraries you use
+### Pinning exact versions of the libraries you use
 
-* To ensure reproducible results, it is important that you specify the exact versions of the libraries you used
+- To ensure reproducible results, it is important that you specify the __exact versions__ of the libraries you used __and all their dependencies__
+* You can export your current environment at any time in `requirements.txt` format with
+  ```
+  pip freeze
+  ```
+* But you shouldn't specify these as your _direct_ dependencies!
 * We can use a tool called `pip-compile` (install with `pip install pip-tools`) to pin all the versions based on your `pyproject.toml`
+
+---
+
+### Pinning with `pip-tools`
+
+`pip-compile` is like `pip install` followed by `pip freeze`, but without actually installing anything
+
 * Use
-    ```
-    pip-compile --output-file=requirements.txt pyproject.toml
-    ```
-    to create a file `requirements.txt` containing all packages you use
+  ```
+  pip-compile pyproject.toml
+  ```
+  to create a file `requirements.txt` containing all packages you use, directly or indirectly
 * You can now install the exact dependencies using the command
-    ```
-    python3 -m pip install -r requirements.txt
-    ```
+  ```
+  python3 -m pip install -r requirements.txt
+  ```
+* pip-tools and dependabot can be used to update `requirements.txt` _when you want to_.
 
 ---
 
-## Exercise
+### Extra dependencies for development
 
-
-FIXME: How do they change with and without numba?
-- You want to use numpy version `1.21.5` for your project. Specify this in your `pyproject.toml` and compile the exact requirements
-
-
----
-
-## Extra dependencies for development
-
-* You might want to use some other libraries when developing the software (such as `pip-tools`)
-* These libraries should not be required when installing the software, but it is nice for other developer to have an easy way to install these.
+* You might want to use some other libraries when developing the software, or other specific tasks (such as `pip-tools` or `pytest`)
+* These libraries should not be required when installing the software,
+  but it is nice for other developer to have an easy way to discover and install them
 * You can list these in `pyproject.toml` under `project.optional-dependencies`
 
-
 ---
 
-## Specifying optional dependencies in `pyproject.toml`
+### Specifying optional dependencies in `pyproject.toml`
 
-```yaml
+```toml
 [project.optional-dependencies]
 test = [
     "pytest",
@@ -233,74 +287,161 @@ test = [
 dev = [
     "pdbpp",
     "ipython",
-    "bump-my-version",
+    "tbump",
     "pre-commit",
     "pip-tools",
 ]
 all = [
-   "my-paper[test,dev]"
+   "my-project[test,dev]"
 ]
 ```
 
 ---
 
-## Installing optional dependencies
+### Installing optional dependencies
 
 * Use
-    ```
-    python3 -m pip install ".[dev]"
-    ```
-    to install optional dependencies.
+  ```
+  python3 -m pip install ".[dev]"
+  ```
+  to install the package in the current directory and its optional 'dev' dependencies.
 * To install several optional dependencies you can separate the names with comma
-    ```
-    python3 -m pip install ".[dev,test]"
-    ```
+  ```
+  python3 -m pip install ".[dev,test]"
+  ```
 
 ---
 
-## Pinning optional dependencies
+### Pinning optional dependencies
 
-It might be beneficial to pin your optional dependencies. This can be done using e.g
+It _might_ be beneficial to pin some of your optional dependencies:
 
 ```
 pip-compile --extra=dev --output-file=requirements-dev.txt pyproject.toml
 ```
 
 * Here we save these dependencies to a different file called `requirements-dev.txt`, which can be installed using
-    ```
-    python3 -m pip install -r requirements-dev.txt
-    ```
+  ```
+  python3 -m pip install -r requirements-dev.txt
+  ```
 
 ---
 
-Demo
+### When to pin
+
+It can be hard to know when to pin dependencies and when not to. Pinned packages help ensure reproducible results. But they also _prevent_ compatibility with other projects.
+
+It's a good idea to use pinned dependencies when you are:
+
+- building reproducible results
+- building a container image
+- rendering a website
+- operating a service
+
+---
+
+### When _not_ to pin
+
+- Running tests
+- In package dependencies
+- When you want to share an environment with another tool
+
+---
+
+### Virtual environment tools
+
+While we have made some recommendations, there are a variety of tools for managing Python dependencies and environments:
+
+- [pip-tools](https://pip-tools.readthedocs.io)
+- [pipenv](https://pipenv.pypa.io)
+- [poetry](https://python-poetry.org)
+
+You don't _have_ to use the tools we recommend.
+There are other solutions to the same problems that are fine to use if they fit better into your workflow.
 
 ---
 
 ## Conda
 
-TBW
+[Conda](https://conda.org) is a _generic_ package manager. You can think of it like `pip`, but where _anything_ can be a package (e.g. Python itself, scientific packages like mpich, petsc, fenics-dolfinx).
+
+Key points:
+
+* creates environments, like `venv`
+* Python itself is a package
+* _All_ packages are binary, there's no "install from source, if needed"
+* [conda-forge](https://conda-forge.org) is a community-maintained collection of over 20,000 conda packages
+* [miniforge](https://github.com/conda-forge/miniforge) is the best way to get started with conda
+
+---
+
+### Basic conda commands
+
+* `conda install fenics-dolfinx mpich` (`pip install`)
+* `conda create --name myproject python=3.10 fenics-dolfinx mpich` (`python3 -m venv`)
+* `conda list` (`pip list`)
+* `conda env export --name myproject [-f exported.yml]` (`pip freeze`)
+
+---
+
+### Sample environment.yml
+
+```yaml
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - fenics-dolfinx
+  - mpich
+```
+
+Create an environment from an environment file:
+
+```bash
+conda env create -n my-paper -f environment.yml
+```
+
+---
+
+### conda-lock
+
+[conda-lock](https://conda.github.io/conda-lock/) is a tool for creating "lock files" for conda environments, like `pip-compile`, but for conda:
+
+```
+conda install conda-lock
+```
+
+```
+conda-lock lock --platform linux-64 --platform osx-arm64 -f environment.yml
+```
+
+---
+
+### DEMO
+
+conda demo
 
 ---
 
 ## Docker
 
-[Docker](https://www.docker.com/get-started/) is a platform that packages an application and all its dependencies together in the form of containers.
+[Docker](https://www.docker.com/get-started/) is a tool for packaging an application and all its dependencies, including the _operating system_, together in the form of __images__ and __containers__.
 
-* The user needs to pull and image from a remote registry, create a container (an instance of an image)
+* The user needs to pull an __image__ from a remote registry (or build the image from source)
+* create a __container__ (a running instance of an image)
 * The user runs the code inside the container
 
 ---
 
-## Basic docker commands
+### Basic docker commands
 
 * Pull image
     ```
     docker pull <image name>
     ```
-    e.g
+    e.g.
     ```
-    docker pull ghcr.io/scientificcomputing/fenics:2023-08-14
+    docker pull g hcr.io/scientificcomputing/fenics:2023-08-14
     ```
 
 * Start new container (set working directory to `home/shared` and share this directory with your current working directory)
@@ -327,11 +468,7 @@ TBW
 
 ---
 
-* Execute existing container
-    ```
-    docker exec -it my-research-code bash
-    ```
-* List images
+* List downloaded images
     ```
     docker images
     ```
@@ -342,21 +479,33 @@ TBW
 
 ---
 
-## Demo
+### Demo - Running jupyter inside docker
 
-Running a fenics demo inside a docker container and output a file to open in Paraview
-<https://fenicsproject.org/olddocs/dolfin/2019.1.0/python/demos/hyperelasticity/demo_hyperelasticity.py.html>
-
-
----
-
-## Running jupyter inside docker
-
-TBW
+If you are used to GUI applications (e.g. with windows), being restricted to a terminal inside a container may be limiting.
+Fortunately, you can connect to containers over the network,
+meaning that web-based UIs like Jupyter work in containers.
 
 ---
 
-## Docker development workflow
+To run a web UI like Jupyter:
+
+```bash
+docker run \
+  --rm \
+  -w $PWD \
+  -v $PWD:$PWD \
+  -u $(id -u) \
+  -p 127.0.0.1:8888:8888 \
+  my-research-code jupyter lab --ip=0.0.0.0
+```
+
+The key points here:
+
+* `--port` forwards the local port `127.0.0.1:8888` to the port _in the container_ (also 8888, but could be different)
+* Because of _network namespaces_, jupyter must listen on the non-default ip `0.0.0.0` to be connectable from outside the container
+---
+
+### Docker development workflow
 
 * The developer needs to write a `Dockerfile` with instructions on how to build and install the dependencies
 * The developer needs to build an image and push this to a registry
@@ -369,50 +518,48 @@ TBW
 
 ---
 
-## Dockerfile
+### Dockerfile
 
-* Use some
+- Dockerfiles are a series of __directives__,
+  each of which modify the filesystem, creating a __layer__.
+- The result of a series of layers is an __image__
 
-```
+```dockerfile
 FROM ghcr.io/scientificcomputing/fenics:2023-08-14
 
 WORKDIR /repo
 
-# Copy pyproject.toml first so that we done need to reinstall in case another file
-# is changing after rebuilding docker image
-RUN git clone --branch ${REPO_BRANCH} --single-branch https://github.com/scientificcomputing/example-paper-fenics.git
-RUN cd example-paper-fenics && python3 -m pip install pip --upgrade && python3 -m pip install --no-cache-dir -r requirements.txt && rm -rf /tmp
+# Copy requirements.txt first so that we done need to reinstall in case another file
+COPY requirements.txt /tmp/requirements.txt
+RUN python3 -m pip install --no-cache-dir --upgrade pip \
+ && python3 -m pip install --no-cache-dir -r requirements.txt
+# collect
+COPY . /example-paper-fenics
+RUN cd /example-paper-fenics \
+ && python3 -m pip install .
+USER 1000
+CMD ["jupyter", "lab", "--ip=0.0.0.0"]
 ```
 
 ---
 
-## We maintain some docker images for scientific computing
+### We maintain some docker images for scientific computing
 
 https://github.com/orgs/scientificcomputing/packages
 
 
 ---
 
-## What do choose?
+## What to choose?
 
 * Use python virtual environments if you
-    - have only python dependencies
+  - have only python dependencies
 
 * Use conda if
-    - you rely on packages with strong dependency on C++/Rust/C/Fortran (e.g Tensorflow)
-    - all packages exist on conda (conda-forge / bioconda)
+  - you rely on packages with strong dependency on C++/Rust/C/Fortran (e.g Tensorflow, FEniCS)
+  - all packages exist on conda (conda-forge / bioconda)
 
 * Use docker if you
-    - need full control over the environment,
-    - require additional packages that are hard to install
-    - need the development version of a dependency (that is not pure python e.g FEniCS)
-
----
-
-## Publishing a docker image with Github actions
-
-The simplest way to ensure that users than exactly reproduce your environment is to use the same docker image as you
-
-Therefore you should always publish a docker image containing the exact dependencies for reproducing the results
-
-The templates contains a workflow for building docker images using GitHub actions for every new tag
+  - need full control over the environment
+  - require additional packages that are hard to install
+  - need the development version of a non-Python dependency (e.g. FEniCS)
