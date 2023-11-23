@@ -41,6 +41,7 @@ jobs:
           for doc in $(ls docs/*.md); do
             npx @marp-team/marp-cli ${doc} --html -o ${{ env.PUBLISH_DIR }}/$(basename ${doc::-3})-slides.html
           done
+          cp  docs/*.png ${{ env.PUBLISH_DIR }}/
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
