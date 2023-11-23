@@ -36,7 +36,7 @@ Henrik Finsberg, Jørgen Dokken and Min Ragan-Kelley
 
 ---
 
-## Goal of this workshops
+## Plan this workshop
 
 - 11.00 - 11.30: Code and data repositories (Henrik)
 - 11.30 - 12.00: Reproducible environments (Min)
