@@ -96,10 +96,11 @@ The order is important!
 
 ## What is an environment?
 
-- An __environment__ is where you install your software in isolation from your system or other projects. __Why?__
+- An __environment__ is where you install your software, isolated from your system and other projects. __Why?__
   * Conflicting dependency versions
   * Easier to upgrade
   * Easier to dispose of and start for scratch
+  * Portable
   * It's always a good idea to use environments!
 
 * Three main options
@@ -111,11 +112,11 @@ The order is important!
 
 ### How and why to specify environments
 
-- An __environment specification__ is a _description_ of what packages should go in an environment.
+- An __environment specification__ is a __portable description__ of what packages should go in an environment.
 
-* When you _specify_ your environment, it's easier for you (or someone else!) to __reproduce__ your environment.
+* When you _specify_ your environment, it's easier to __reproduce__ your environment, or at least __compare__ it with theirs.
 
-* Tools turn specifications into environments (and _vice versa_!)
+* __Tools__ turn specifications into environments (and _vice versa_!)
   - `pip` - `requirements.txt`
   - `conda` - `environment.yml`
   - `Docker` - `Dockerfile`
@@ -176,19 +177,20 @@ python3 -c "import pandas; print(pandas.__version__)"
 
 ### Example
 
-```bash
-python3 -m venv latest
-. latest/bin/activate
-python3 -m pip install pandas
-deactivate
-```
+<style scoped>li { list-style-type: none}</style>
 
-```bash
-python3 -m venv old-pandas
-. old-pandas/bin/activate
-python3 -m pip install "pandas<2.0"
-deactivate
-```
+- ```bash
+  python3 -m venv latest
+  . latest/bin/activate
+  python3 -m pip install pandas
+  ```
+
+* ```bash
+  python3 -m venv old-pandas
+  . old-pandas/bin/activate
+  python3 -m pip install "pandas<2.0"
+  deactivate
+  ```
 
 ---
 
@@ -238,35 +240,6 @@ packages = []
 
 ---
 
-### Pinning exact versions of the libraries you use
-
-- To ensure reproducible results, it is important that you specify the __exact versions__ of the libraries you used __and all their dependencies__
-* You can export your current environment at any time in `requirements.txt` format with
-  ```
-  pip freeze
-  ```
-* But you shouldn't specify these as your _direct_ dependencies!
-* We can use a tool called `pip-compile` (install with `pip install pip-tools`) to pin all the versions based on your `pyproject.toml`
-
----
-
-### Pinning with `pip-tools`
-
-`pip-compile` is like `pip install` followed by `pip freeze`, but without actually installing anything
-
-* Use
-  ```
-  pip-compile pyproject.toml
-  ```
-  to create a file `requirements.txt` containing all packages you use, directly or indirectly
-* You can now install the exact dependencies using the command
-  ```
-  python3 -m pip install -r requirements.txt
-  ```
-* pip-tools and dependabot can be used to update `requirements.txt` _when you want to_.
-
----
-
 ### Extra dependencies for development
 
 * You might want to use some other libraries when developing the software, or other specific tasks (such as `pip-tools` or `pytest`)
@@ -312,6 +285,35 @@ all = [
 
 ---
 
+### Pinning exact versions of the libraries you use
+
+- To ensure reproducible results, it is important that you specify the __exact versions__ of the libraries you used __and all their dependencies__
+* You can export your current environment at any time in `requirements.txt` format with
+  ```
+  pip freeze
+  ```
+* But you shouldn't specify these as your _direct_ dependencies! (never put `pandas==2.1.2` in your dependencies by hand)
+* We can use a tool called `pip-compile` (install with `pip install pip-tools`) to pin all the versions based on your `pyproject.toml`
+
+---
+
+### Pinning with `pip-tools`
+
+`pip-compile` is like `pip install` followed by `pip freeze`, but without actually installing anything
+
+* Use
+  ```
+  pip-compile pyproject.toml
+  ```
+  to create a file `requirements.txt` containing all packages you use, directly or indirectly
+* You can now install the exact dependencies using the command
+  ```
+  python3 -m pip install -r requirements.txt
+  ```
+* pip-tools and dependabot can be used to update `requirements.txt` _when you want to_.
+
+---
+
 ### Pinning optional dependencies
 
 It _might_ be beneficial to pin some of your optional dependencies:
@@ -342,9 +344,14 @@ It's a good idea to use pinned dependencies when you are:
 
 ### When _not_ to pin
 
-- Running tests
 - In package dependencies
+- Running tests (maybe!)
 - When you want to share an environment with another tool
+
+* Short answer: always good to have both!
+  - always track loose, direct dependencies
+  - track pinned dependencies _separately_, using tools, not by hand
+  - which to install depends on what you are doing
 
 ---
 
@@ -365,10 +372,11 @@ There are other solutions to the same problems that are fine to use if they fit 
 
 [Conda](https://conda.org) is a _generic_ package manager. You can think of it like `pip`, but where _anything_ can be a package (e.g. Python itself, scientific packages like mpich, petsc, fenics-dolfinx).
 
-Key points:
+Key points, coming from pip/venv:
 
 * creates environments, like `venv`
-* Python itself is a package
+* Python itself is just another package
+* Can express proper dependencies across languages
 * _All_ packages are binary, there's no "install from source, if needed"
 * [conda-forge](https://conda-forge.org) is a community-maintained collection of over 20,000 conda packages
 * [miniforge](https://github.com/conda-forge/miniforge) is the best way to get started with conda
@@ -377,10 +385,14 @@ Key points:
 
 ### Basic conda commands
 
-* `conda install fenics-dolfinx mpich` (`pip install`)
-* `conda create --name myproject python=3.10 fenics-dolfinx mpich` (`python3 -m venv`)
-* `conda list` (`pip list`)
-* `conda env export --name myproject [-f exported.yml]` (`pip freeze`)
+|conda | pip/venv |
+|:-----|:---------|
+| `conda install fenics-dolfinx mpich`| `pip install`|
+| `conda create --name myproject python=3.10 fenics-dolfinx mpich` | `python3 -m venv` |
+| `conda activate --name myproject | `source myproject/bin/activate` |
+| `conda deactivate` | `deactivate` |
+| `conda list` | `pip list` |
+| `conda env export --name myproject [-f exported.yml]` | `pip freeze` |
 
 ---
 
@@ -403,6 +415,7 @@ conda env create -n my-paper -f environment.yml
 
 ---
 
+
 ### conda-lock
 
 [conda-lock](https://conda.github.io/conda-lock/) is a tool for creating "lock files" for conda environments, like `pip-compile`, but for conda:
@@ -412,7 +425,7 @@ conda install conda-lock
 ```
 
 ```
-conda-lock lock --platform linux-64 --platform osx-arm64 -f environment.yml
+conda-loc lock --platform linux-64 --platform osx-arm64 -f environment.yml
 ```
 
 ---
@@ -423,13 +436,14 @@ conda demo
 
 ---
 
-## Docker
+## Containers (Docker)
 
-[Docker](https://www.docker.com/get-started/) is a tool for packaging an application and all its dependencies, including the _operating system_, together in the form of __images__ and __containers__.
+[Docker](https://www.docker.com/get-started/) is a tool for packaging an application and all its dependencies, including the _operating system_, together in the form of __images__ and __containers__. Typical use looks like:
 
-* The user needs to pull an __image__ from a remote registry (or build the image from source)
-* create a __container__ (a running instance of an image)
-* The user runs the code inside the container
+* Pull an __image__ from a remote registry (or build the image from source)
+* Create a __container__ (a running instance of an image)
+* Runs some code inside the container
+* Stop and remove the container
 
 ---
 
@@ -441,10 +455,10 @@ conda demo
     ```
     e.g.
     ```
-    docker pull g hcr.io/scientificcomputing/fenics:2023-08-14
+    docker pull ghcr.io/scientificcomputing/fenics:2023-08-14
     ```
 
-* Start new container (set working directory to `home/shared` and share this directory with your current working directory)
+* Start new container (set working directory to `/home/shared` and share this directory with your current working directory)
     ```
     docker run --name=my-research-code -w /home/shared -v $PWD:/home/shared -it ghcr.io/scientificcomputing/fenics:2023-08-14
     ```
@@ -496,7 +510,7 @@ docker run \
   -v $PWD:$PWD \
   -u $(id -u) \
   -p 127.0.0.1:8888:8888 \
-  my-research-code jupyter lab --ip=0.0.0.0
+  my-image jupyter lab --ip=0.0.0.0
 ```
 
 The key points here:
@@ -507,8 +521,11 @@ The key points here:
 
 ### Docker development workflow
 
-* The developer needs to write a `Dockerfile` with instructions on how to build and install the dependencies
-* The developer needs to build an image and push this to a registry
+To _make_ a docker image:
+
+* Write a `Dockerfile` with instructions on how to build and install the dependencies
+* Build an image from the Dockerfile
+* Push this to a registry (optional)
 
 ---
 
@@ -556,10 +573,11 @@ https://github.com/orgs/scientificcomputing/packages
   - have only python dependencies
 
 * Use conda if
-  - you rely on packages with strong dependency on C++/Rust/C/Fortran (e.g Tensorflow, FEniCS)
+  - you rely on non-Python packages (e.g C libraries, Tensorflow, FEniCS)
   - all packages exist on conda (conda-forge / bioconda)
 
 * Use docker if you
   - need full control over the environment
   - require additional packages that are hard to install
   - need the development version of a non-Python dependency (e.g. FEniCS)
+  - Someone else already maintains an image with what you need!
