@@ -8,7 +8,7 @@ The agenda is as follows
 - Intro [Slides](https://scientificcomputing.github.io/seminar-23-11-2023/intro-slides.html) [Book](https://scientificcomputing.github.io/seminar-23-11-2023/docs/intro.html)
 - Code and Data repositories [Slides](https://scientificcomputing.github.io/seminar-23-11-2023/repo-slides.html) [Book](https://scientificcomputing.github.io/seminar-23-11-2023/docs/repo.html)
 - Reproducible environments [Slides](https://scientificcomputing.github.io/seminar-23-11-2023/environments-slides.html) [Book](https://scientificcomputing.github.io/seminar-23-11-2023/docs/environments.html)
-- Linters, formatters and continuous integration [Slides](https://scientificcomputing.github.io/seminar-23-11-2023/testing-slides.html) [Book](https://scientificcomputing.github.io/seminar-23-11-2023/docs/testing.html)
+- Linters and formatters [Slides](https://scientificcomputing.github.io/seminar-23-11-2023/testing-slides.html) [Book](https://scientificcomputing.github.io/seminar-23-11-2023/docs/testing.html)
 - Continuous Integration and Github Pipelines [Slides](https://scientificcomputing.github.io/seminar-23-11-2023/ci-slides.html) [Book](https://scientificcomputing.github.io/seminar-23-11-2023/docs/ci.html)
 - Documentation [Slides](https://scientificcomputing.github.io/seminar-23-11-2023/documentation-slides.html) [Book](https://scientificcomputing.github.io/seminar-23-11-2023/docs/documentation.html)
 - Example paper with code [Slides](https://scientificcomputing.github.io/seminar-23-11-2023/paper-slides.html) [Book](https://scientificcomputing.github.io/seminar-23-11-2023/docs/paper.html)
