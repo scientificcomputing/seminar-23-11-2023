@@ -2,7 +2,7 @@
 theme: default
 paginate: true
 header: 'Continuous Integration'
-footer: '23.11.23 - Henrik Finsberg and Jørgen Dokken'
+footer: '23.11.23 - Jørgen S. Dokken'
 size: 16:9
 style: |
   .small-text {
