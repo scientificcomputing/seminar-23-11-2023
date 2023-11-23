@@ -197,7 +197,7 @@ env:
 
 ## Setting up a set of jobs
 
-```
+```yaml
 jobs:
   build:
     runs-on: ubuntu-22.04
